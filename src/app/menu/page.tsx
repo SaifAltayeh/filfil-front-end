@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { MenuList } from "@/components/menu/MenuList";
 import { MenuNav } from "@/components/menu/MenuNav";
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
 import { PageIntro } from "@/components/ui/PageIntro";
-import { media } from "@/lib/assets";
 
 export const metadata: Metadata = {
   title: "Menu",
@@ -33,18 +30,6 @@ export default function MenuPage() {
         <Container>
           <MenuNav />
           <MenuList />
-
-          <Reveal className="mt-24 max-w-md">
-            <p className="eyebrow mb-4">Official menu</p>
-            <Image
-              src={media.officialMenu.src}
-              alt={media.officialMenu.alt}
-              width={media.officialMenu.width}
-              height={media.officialMenu.height}
-              className="h-auto w-full border border-black/10"
-              sizes="(min-width: 768px) 28rem, 100vw"
-            />
-          </Reveal>
         </Container>
       </section>
     </main>

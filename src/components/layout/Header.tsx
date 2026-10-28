@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/ui/Logo";
+import { SoundToggle } from "@/components/layout/SoundToggle";
 import { MenuOverlay } from "@/components/navigation/MenuOverlay";
 import { cn } from "@/lib/cn";
 
@@ -46,19 +47,22 @@ export function Header() {
       >
         <div className="flex h-full items-center justify-between px-5 md:px-10 lg:px-16">
           <Logo variant={overDark ? "light" : "dark"} priority />
-          <button
-            type="button"
-            className="eyebrow flex items-center gap-3 py-2"
-            aria-expanded={open}
-            aria-controls="site-menu"
-            onClick={() => setOpen(true)}
-          >
-            Menu
-            <span aria-hidden className="flex flex-col gap-1.5">
-              <span className="block h-px w-6 bg-current" />
-              <span className="block h-px w-4 bg-current" />
-            </span>
-          </button>
+          <div className="flex items-center gap-5 md:gap-8">
+            <SoundToggle />
+            <button
+              type="button"
+              className="eyebrow flex items-center gap-3 py-2"
+              aria-expanded={open}
+              aria-controls="site-menu"
+              onClick={() => setOpen(true)}
+            >
+              Menu
+              <span aria-hidden className="flex flex-col gap-1.5">
+                <span className="block h-px w-6 bg-current" />
+                <span className="block h-px w-4 bg-current" />
+              </span>
+            </button>
+          </div>
         </div>
       </header>
       <MenuOverlay open={open} onClose={() => setOpen(false)} />

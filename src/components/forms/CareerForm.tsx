@@ -9,7 +9,13 @@ import { careerSchema, type CareerInput } from "@/lib/validation";
 import { Button, buttonClassName } from "@/components/ui/Button";
 import { Field, FormStatus, Select, TextArea, TextInput } from "./Field";
 
-export function CareerForm({ defaultPosition }: { defaultPosition?: string }) {
+export function CareerForm({
+  defaultPosition,
+  lockedPosition = false,
+}: {
+  defaultPosition?: string;
+  lockedPosition?: boolean;
+}) {
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [cvError, setCvError] = useState<string | null>(null);
@@ -53,15 +59,19 @@ export function CareerForm({ defaultPosition }: { defaultPosition?: string }) {
       <Field label="Phone Number" htmlFor="phone" error={errors.phone?.message}>
         <TextInput id="phone" type="tel" autoComplete="tel" {...register("phone")} />
       </Field>
-      <Field label="Position of Interest" htmlFor="position" error={errors.position?.message}>
-        <Select id="position" {...register("position")}>
-          {positions.map((position) => (
-            <option key={position} value={position}>
-              {position}
-            </option>
-          ))}
-        </Select>
-      </Field>
+      {lockedPosition ? (
+        <input type="hidden" {...register("position")} />
+      ) : (
+        <Field label="Position of Interest" htmlFor="position" error={errors.position?.message}>
+          <Select id="position" {...register("position")}>
+            {positions.map((position) => (
+              <option key={position} value={position}>
+                {position}
+              </option>
+            ))}
+          </Select>
+        </Field>
+      )}
       <Field label="Years of Experience" htmlFor="experience" error={errors.experience?.message}>
         <TextInput id="experience" {...register("experience")} />
       </Field>

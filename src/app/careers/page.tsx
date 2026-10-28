@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { CareerForm } from "@/components/forms/CareerForm";
+import { OpenPositions } from "@/components/careers/OpenPositions";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ImageReveal, Reveal } from "@/components/ui/Reveal";
 import { PageIntro } from "@/components/ui/PageIntro";
-import { jobs } from "@/data/careers";
 import { media } from "@/lib/assets";
 
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Join the FILFIL crew in Amman. Explore open positions or submit a general application.",
+    "Join the FILFIL crew in Amman. Explore open positions and apply directly from the listing.",
 };
 
 export default function CareersPage() {
@@ -63,57 +62,7 @@ export default function CareersPage() {
           <Reveal>
             <h2 className="headline mb-10 text-4xl md:text-6xl">Open positions.</h2>
           </Reveal>
-          {jobs.length === 0 ? (
-            <Reveal>
-              <p className="max-w-xl text-lg leading-relaxed">
-                There are no listed vacancies right now. That doesn&apos;t mean we
-                aren&apos;t looking. Send a general application and we&apos;ll keep you in
-                mind as FILFIL grows.
-              </p>
-            </Reveal>
-          ) : (
-            <ul className="divide-y divide-black/15 border-y border-black/15">
-              {jobs.map((job) => (
-                <li key={job.id} className="grid gap-4 py-8 md:grid-cols-12">
-                  <div className="md:col-span-4">
-                    <h3 className="text-2xl">{job.title}</h3>
-                    <p className="eyebrow mt-3 text-black/50">
-                      {job.department} · {job.type}
-                    </p>
-                  </div>
-                  <div className="md:col-span-8">
-                    <p className="text-lg leading-relaxed">{job.summary}</p>
-                    <p className="mt-4">{job.description}</p>
-                    <ul className="mt-4 list-disc pl-5 text-black/75">
-                      {job.requirements.map((requirement) => (
-                        <li key={requirement}>{requirement}</li>
-                      ))}
-                    </ul>
-                    <div className="mt-6">
-                      <ButtonLink href="#apply">Apply for this role</ButtonLink>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </Container>
-      </section>
-
-      <section id="apply" className="scroll-mt-28 bg-beige pb-24">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-12">
-            <Reveal className="lg:col-span-4">
-              <h2 className="headline text-4xl md:text-5xl">Apply.</h2>
-              <p className="mt-6 max-w-sm text-lg leading-relaxed">
-                Role-specific and general applications are both welcome. Attach your
-                CV and tell us why FILFIL feels like the right next step.
-              </p>
-            </Reveal>
-            <div className="lg:col-span-7 lg:col-start-6">
-              <CareerForm />
-            </div>
-          </div>
+          <OpenPositions />
         </Container>
       </section>
     </main>

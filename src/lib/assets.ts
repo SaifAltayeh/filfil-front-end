@@ -8,6 +8,10 @@ export const videos = {
   heroMobile: "/assets/videos/hero-mobile.mp4",
 } as const;
 
+export const audio = {
+  tech: "/assets/audio/tech.mp3",
+} as const;
+
 export const media = {
   heroPosterDesktop: {
     src: "/assets/media/hero-poster-desktop.jpg",

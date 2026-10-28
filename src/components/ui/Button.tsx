@@ -62,11 +62,17 @@ export function Button({
   tone = "dark",
   type = "button",
   disabled,
-}: Common & { type?: "button" | "submit"; disabled?: boolean }) {
+  onClick,
+}: Common & {
+  type?: "button" | "submit";
+  disabled?: boolean;
+  onClick?: () => void;
+}) {
   return (
     <button
       type={type}
       disabled={disabled}
+      onClick={onClick}
       className={cn(
         base,
         styles[variant][tone],
