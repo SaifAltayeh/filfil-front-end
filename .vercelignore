@@ -1,0 +1,13 @@
+# Keep the Hobby 100 MB source upload under the limit
+_source
+*.zip
+.next
+.git
+node_modules
+data/submissions
+data/uploads
+filfil logo.png
+hero section desktop view video.mp4
+hero section mobile view video.mp4
+menu.jpeg
+filfil pics.zip

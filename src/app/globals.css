@@ -21,6 +21,10 @@ html {
   overflow-x: clip;
 }
 
+html.menu-nav-jump {
+  scroll-behavior: auto;
+}
+
 html.intro-done .intro-loader {
   display: none !important;
 }
