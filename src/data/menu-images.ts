@@ -3,14 +3,14 @@ import { media, type MediaAsset } from "@/lib/assets";
 const byItem: Record<string, MediaAsset> = {
   "chicken-shawarma": media.productChickenShawarma,
   "beef-shawarma": media.productBeefShawarma,
-  "batata-sandwich": media.snackBoxes,
+  "batata-sandwich": media.productWrapsBox,
   "chicken-meal-single": media.productChickenShawarma,
   "chicken-meal-double": media.productChickenShawarma,
   "beef-meal-single": media.productBeefShawarma,
   "beef-meal-double": media.productBeefShawarma,
   "mix-meal-double": media.guestsEating,
   "shawarma-meal-triple": media.guestsEating,
-  "halloumi-meal": media.snackBoxes,
+  "halloumi-meal": media.productWrapsBox,
   "filfil-sweet-fries": media.productTruffleFries,
   "truffle-sweet-fries": media.productTruffleFries,
   "falafel-rolls": media.productFalafelRolls,
@@ -33,6 +33,32 @@ const byCategory: Record<string, MediaAsset> = {
   "sides-add-ons": media.sauces,
   beverages: media.productIcedTea,
 };
+
+export const categoryGalleries: Record<string, MediaAsset[]> = {
+  "shawarma-sandwich": [
+    media.productChickenShawarma,
+    media.productBeefShawarma,
+    media.productWrapsBox,
+  ],
+  "shawarma-meal": [media.guestsEating, media.productWrapsBox, media.guestsSharing],
+  "signature-snack-box": [
+    media.productTruffleFries,
+    media.snackBoxes,
+    media.productFalafelRolls,
+  ],
+  "sides-add-ons": [media.sauces, media.productTruffleFries, media.oliveOilShatta],
+  beverages: [media.productIcedTea, media.drinkPortrait, media.drinksToast],
+};
+
+export function galleryForCategory(categoryId: string): MediaAsset[] {
+  return (
+    categoryGalleries[categoryId] ?? [
+      media.snackBoxes,
+      media.productChickenShawarma,
+      media.guestsEating,
+    ]
+  );
+}
 
 export function imageForMenuItem(itemId: string, categoryId: string): MediaAsset {
   return byItem[itemId] ?? byCategory[categoryId] ?? media.snackBoxes;

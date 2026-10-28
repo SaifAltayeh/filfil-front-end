@@ -38,20 +38,19 @@ export function Footer() {
             <p className="eyebrow mb-5 text-beige/50">Visit</p>
             <p className="text-lg leading-snug">{site.location.display}</p>
             <div className="mt-6 flex flex-col gap-2">
-              {site.instagram ? (
-                <a href={site.instagram} className="nav-link inline-block w-fit" target="_blank" rel="noreferrer">
-                  Instagram
-                </a>
-              ) : (
-                <span className="text-beige/45">Instagram</span>
-              )}
+              <a
+                href={site.instagram}
+                className="nav-link inline-block w-fit"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Instagram
+              </a>
               {site.tiktok ? (
                 <a href={site.tiktok} className="nav-link inline-block w-fit" target="_blank" rel="noreferrer">
                   TikTok
                 </a>
-              ) : (
-                <span className="text-beige/45">TikTok</span>
-              )}
+              ) : null}
             </div>
           </div>
         </div>

@@ -18,18 +18,23 @@ function navLine() {
 }
 
 function scrollToCategory(id: string) {
-  const section = document.getElementById(id);
-  if (!section) return;
+  const jump = () => {
+    const section = document.getElementById(id);
+    if (!section) return;
+    const html = document.documentElement;
+    const top = Math.max(0, window.scrollY + section.getBoundingClientRect().top - navLine());
+    html.classList.add("menu-nav-jump");
+    html.style.setProperty("scroll-behavior", "auto", "important");
+    window.scrollTo({ top, behavior: "instant" });
+    window.setTimeout(() => {
+      html.classList.remove("menu-nav-jump");
+      html.style.removeProperty("scroll-behavior");
+    }, 40);
+  };
 
-  const html = document.documentElement;
-  const top = Math.max(0, window.scrollY + section.getBoundingClientRect().top - navLine());
-  html.classList.add("menu-nav-jump");
-  html.style.setProperty("scroll-behavior", "auto", "important");
-  window.scrollTo({ top, behavior: "instant" });
-  window.setTimeout(() => {
-    html.classList.remove("menu-nav-jump");
-    html.style.removeProperty("scroll-behavior");
-  }, 50);
+  jump();
+  requestAnimationFrame(jump);
+  window.setTimeout(jump, 160);
 }
 
 function categoryFromScroll() {
@@ -102,7 +107,7 @@ export function MenuNav() {
   return (
     <nav
       aria-label="Menu categories"
-      className="sticky top-16 z-40 -mx-5 mb-12 border-y border-black/10 bg-beige md:top-20 md:-mx-10 lg:-mx-16"
+      className="sticky top-16 z-40 -mx-5 mb-6 border-y border-black/10 bg-beige md:top-20 md:-mx-10 md:mb-8 lg:-mx-16"
     >
       <LayoutGroup id="menu-categories">
         <ul

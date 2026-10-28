@@ -141,6 +141,12 @@ export const media = {
     width: 1400,
     height: 1750,
   },
+  productWrapsBox: {
+    src: "/assets/media/product-wraps-box.jpg",
+    alt: "FILFIL shawarma wraps packed in a snack box",
+    width: 775,
+    height: 1024,
+  },
 } as const;
 
 export type MediaAsset = (typeof media)[keyof typeof media];

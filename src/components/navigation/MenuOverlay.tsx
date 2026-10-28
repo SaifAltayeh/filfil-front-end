@@ -133,11 +133,9 @@ export function MenuOverlay({
           <div className="flex flex-wrap items-end justify-between gap-6 px-5 py-8 md:px-10 lg:px-16">
             <p className="eyebrow max-w-xs text-beige/70">{site.location.display}</p>
             <div className="flex gap-6">
-              {site.instagram ? (
-                <a href={site.instagram} className="eyebrow nav-link" target="_blank" rel="noreferrer">
-                  Instagram
-                </a>
-              ) : null}
+              <a href={site.instagram} className="eyebrow nav-link" target="_blank" rel="noreferrer">
+                Instagram
+              </a>
               {site.tiktok ? (
                 <a href={site.tiktok} className="eyebrow nav-link" target="_blank" rel="noreferrer">
                   TikTok

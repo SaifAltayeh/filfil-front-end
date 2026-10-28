@@ -11,7 +11,7 @@ type FeaturedProduct = (typeof featuredProducts)[number];
 
 function ProductCard({ product }: { product: FeaturedProduct }) {
   return (
-    <figure className="mr-5 w-[240px] shrink-0 sm:w-[300px]">
+    <figure className="mr-4 w-[168px] shrink-0 sm:mr-5 sm:w-[200px] lg:w-[220px]">
       <Link href={product.href} className="group block">
         <div className="overflow-hidden rounded-2xl bg-black/5">
           <Image
@@ -19,8 +19,8 @@ function ProductCard({ product }: { product: FeaturedProduct }) {
             alt={product.image.alt}
             width={product.image.width}
             height={product.image.height}
-            className="aspect-[3/4] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-            sizes="300px"
+            className="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+            sizes="220px"
           />
         </div>
         <figcaption className="mt-3 text-[15px] leading-snug tracking-tight text-black/60 sm:text-base">

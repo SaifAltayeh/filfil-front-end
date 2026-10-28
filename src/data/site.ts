@@ -27,7 +27,7 @@ export const site = {
     return process.env.NEXT_PUBLIC_CONTACT_PHONE || null;
   },
   get instagram() {
-    return process.env.NEXT_PUBLIC_INSTAGRAM_URL || null;
+    return process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/filfiljo/";
   },
   get tiktok() {
     return process.env.NEXT_PUBLIC_TIKTOK_URL || null;

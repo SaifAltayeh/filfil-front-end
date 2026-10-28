@@ -6,13 +6,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { jobs, generalPositionLabel } from "@/data/careers";
 import { submitCareer } from "@/lib/actions";
 import { careerSchema, type CareerInput } from "@/lib/validation";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClassName } from "@/components/ui/Button";
 import { Field, FormStatus, Select, TextArea, TextInput } from "./Field";
 
 export function CareerForm({ defaultPosition }: { defaultPosition?: string }) {
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [cvError, setCvError] = useState<string | null>(null);
+  const [cvName, setCvName] = useState<string | null>(null);
   const positions = [generalPositionLabel, ...jobs.map((job) => job.title)];
 
   const {
@@ -64,16 +65,22 @@ export function CareerForm({ defaultPosition }: { defaultPosition?: string }) {
       <Field label="Years of Experience" htmlFor="experience" error={errors.experience?.message}>
         <TextInput id="experience" {...register("experience")} />
       </Field>
-      <Field label="CV Upload" htmlFor="cv" error={cvError ?? undefined}>
+      <Field label="CV Upload" error={cvError ?? undefined}>
         <input
           id="cv"
           name="cv"
           type="file"
           accept=".pdf,.doc,.docx,application/pdf"
           required
-          className="w-full border-b border-black/30 py-3 text-lg file:mr-4 file:border-0 file:bg-transparent file:font-medium file:uppercase file:tracking-[0.18em] file:text-black"
+          className="sr-only"
+          onChange={(event) => setCvName(event.target.files?.[0]?.name ?? null)}
         />
-        <p className="pt-2 text-sm text-black/55">PDF, DOC, or DOCX. Maximum 5MB.</p>
+        <label htmlFor="cv" className={buttonClassName({ variant: "solid", className: "w-fit cursor-pointer" })}>
+          {cvName ? "Replace File" : "Choose File"}
+        </label>
+        <p className="pt-3 text-sm text-black/55">
+          {cvName ? cvName : "PDF, DOC, or DOCX. Maximum 5MB."}
+        </p>
       </Field>
       <Field label="Short Introduction" htmlFor="message" error={errors.message?.message}>
         <TextArea id="message" {...register("message")} />

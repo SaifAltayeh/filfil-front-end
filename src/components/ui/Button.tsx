@@ -22,6 +22,18 @@ const styles: Record<Variant, Record<Tone, string>> = {
 const base =
   "inline-flex max-w-full items-center justify-center rounded-full px-5 py-3 text-center text-[0.68rem] font-medium tracking-[0.16em] uppercase transition-colors duration-300 sm:px-6 sm:text-[0.72rem] sm:tracking-[0.22em]";
 
+export function buttonClassName({
+  variant = "outline",
+  tone = "dark",
+  className,
+}: {
+  variant?: Variant;
+  tone?: Tone;
+  className?: string;
+} = {}) {
+  return cn(base, styles[variant][tone], className);
+}
+
 type Common = {
   children: React.ReactNode;
   className?: string;
