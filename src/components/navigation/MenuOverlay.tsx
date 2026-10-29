@@ -90,7 +90,7 @@ export function MenuOverlay({
 
           <nav className="flex min-h-0 flex-1 flex-col justify-center overflow-y-auto px-5 py-8 pb-24 md:px-10 lg:px-16">
             <motion.ul
-              className="flex flex-col gap-5 md:gap-3"
+              className="flex flex-col gap-5 md:gap-4 lg:gap-3"
               initial="hidden"
               animate="show"
               exit="hidden"
@@ -116,7 +116,7 @@ export function MenuOverlay({
                   <Link
                     href={item.href}
                     onClick={onClose}
-                    className="headline group flex items-baseline gap-4 py-1 text-[clamp(2rem,8vw,7rem)] leading-[1.05] text-beige md:py-0 md:leading-[0.88]"
+                    className="headline group flex items-baseline gap-4 py-1 text-[clamp(2rem,8vw,7rem)] leading-[0.95] text-beige"
                   >
                     <span className="eyebrow hidden pt-2 text-beige/50 sm:inline">
                       0{index + 1}

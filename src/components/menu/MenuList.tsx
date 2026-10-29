@@ -21,7 +21,7 @@ function MenuCard({
           width={image.width}
           height={image.height}
           className="aspect-square h-auto w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-          sizes="(min-width: 1024px) 18vw, (min-width: 640px) 45vw, 100vw"
+          sizes="270px"
         />
       </div>
       <div className="mt-3 flex items-start justify-between gap-3">
@@ -53,14 +53,17 @@ export function MenuList() {
             <h2 className="headline mb-8 text-[clamp(2rem,5vw,4.5rem)] md:mb-10">
               {category.name}.
             </h2>
-            <div
-              className={cn(
-                "grid gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-4",
-                compact && "lg:grid-cols-5",
-              )}
-            >
+            <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 scroll-ps-5 [scrollbar-width:none] md:-mx-10 md:gap-5 md:px-10 md:scroll-ps-10 lg:-mx-16 lg:px-16 lg:scroll-ps-16 [&::-webkit-scrollbar]:hidden">
               {category.items.map((item) => (
-                <MenuCard key={item.id} item={item} categoryId={category.id} />
+                <div
+                  key={item.id}
+                  className={cn(
+                    "w-[min(70vw,16.5rem)] shrink-0 snap-start",
+                    compact && "w-[min(58vw,14rem)]",
+                  )}
+                >
+                  <MenuCard item={item} categoryId={category.id} />
+                </div>
               ))}
             </div>
             {category.note ? (
