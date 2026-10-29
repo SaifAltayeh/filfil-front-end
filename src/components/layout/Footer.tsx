@@ -21,20 +21,7 @@ export function Footer() {
             </p>
           </div>
 
-          <nav className="md:col-span-4" aria-label="Footer">
-            <p className="eyebrow mb-5 text-beige/50">Explore</p>
-            <ul className="grid gap-2 text-lg">
-              {mainNav.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className="nav-link inline-block py-1">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="md:col-span-3">
+          <div className="md:col-span-3 md:col-start-7">
             <p className="eyebrow mb-5 text-beige/50">Visit</p>
             <p className="text-lg leading-snug">{site.location.display}</p>
             <div className="mt-6 flex flex-col gap-2">
@@ -47,12 +34,30 @@ export function Footer() {
                 Instagram
               </a>
               {site.tiktok ? (
-                <a href={site.tiktok} className="nav-link inline-block w-fit" target="_blank" rel="noreferrer">
+                <a
+                  href={site.tiktok}
+                  className="nav-link inline-block w-fit"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   TikTok
                 </a>
               ) : null}
             </div>
           </div>
+
+          <nav className="md:col-span-3 md:col-start-10" aria-label="Footer">
+            <p className="eyebrow mb-5 text-beige/50">Explore</p>
+            <ul className="grid gap-2 text-lg">
+              {mainNav.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="nav-link inline-block py-1">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
 
         <div className="flex flex-wrap items-end justify-between gap-6 pt-8 text-sm text-beige/55">

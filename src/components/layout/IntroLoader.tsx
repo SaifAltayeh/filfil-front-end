@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { featuredProducts } from "@/data/featured";
 import { easeOutExpo } from "@/lib/motion";
+import { startSoundtrack } from "@/lib/soundtrack";
 
 const STEP_MS = 160;
 const EXIT_MS = 400;
@@ -31,12 +32,14 @@ export function IntroLoader() {
     timers.push(
       window.setTimeout(() => {
         if (reduced) {
+          startSoundtrack();
           finish();
           return;
         }
 
         setStatus("active");
         document.body.style.overflow = "hidden";
+        startSoundtrack();
 
         featuredProducts.forEach((_, i) => {
           timers.push(window.setTimeout(() => setIndex(i), i * STEP_MS));

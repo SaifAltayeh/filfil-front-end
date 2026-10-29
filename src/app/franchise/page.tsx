@@ -41,8 +41,7 @@ export default function FranchisePage() {
               </h2>
               <p className="mt-8 max-w-md text-lg leading-relaxed text-beige/75">
                 Interested in exploring opportunities with FILFIL? Let&apos;s start a
-                conversation. We don&apos;t list fees or investment figures here — those
-                details are shared privately with serious partners.
+                conversation.
               </p>
             </Reveal>
             <Reveal className="lg:col-span-5 lg:col-start-8">

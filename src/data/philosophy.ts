@@ -1,6 +1,9 @@
 export const philosophyBrief = {
-  quote:
-    "Rooted in the Levant. Inspired by the Mediterranean. Familiar flavours, true ingredients, a little unexpected twist.",
+  paragraphs: [
+    "At FILFIL, we take the flavours we grew up loving and give them a fresh perspective.",
+    "Rooted in Levantine traditions and inspired by the wider Mediterranean, we bring familiar favourites to life through carefully selected ingredients, thoughtful preparation, and creative combinations.",
+    "Good food, fresh thinking, and a little unexpected twist.",
+  ],
   caption: "True ingredients. Bold flavours.",
 } as const;
 

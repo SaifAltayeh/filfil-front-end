@@ -17,8 +17,7 @@ export function FeaturedProducts() {
                 products.
               </h2>
               <p className="measure mt-6 text-lg leading-relaxed text-black/70">
-                Signature FILFIL plates, shot in Amman. Nothing stock. Nothing staged
-                for a template.
+                True ingredients. Bold flavours.
               </p>
             </div>
             <ButtonLink href="/menu" className="self-start md:self-auto">

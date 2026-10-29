@@ -25,7 +25,11 @@ export function PageIntro({
           </Reveal>
           {kicker || children ? (
             <Reveal delay={0.08} className="lg:col-span-5 lg:col-start-8">
-              {kicker ? <p className="text-lg md:text-xl">{kicker}</p> : null}
+              {kicker ? (
+                <p className="font-display text-lg font-bold tracking-[-0.03em] md:text-xl">
+                  {kicker}
+                </p>
+              ) : null}
               {children ? (
                 <div
                   className={cn(

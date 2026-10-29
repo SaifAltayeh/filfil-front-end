@@ -2,40 +2,25 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-  type MotionValue,
-} from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { ButtonLink } from "@/components/ui/Button";
 import { philosophyBrief } from "@/data/philosophy";
 import { media } from "@/lib/assets";
 
-const WORDS = philosophyBrief.quote.split(/\s+/);
 const IMAGE = media.tableGreenWall;
-const quoteClass =
-  "mx-auto max-w-3xl text-center font-sans text-[clamp(1.6rem,3.1vw,2.5rem)] leading-[1.2] tracking-[-0.01em] text-balance";
 
-function BriefWord({
-  word,
-  index,
-  progress,
-}: {
-  word: string;
-  index: number;
-  progress: MotionValue<number>;
-}) {
-  const start = (index / WORDS.length) * 0.38;
-  const end = ((index + 1) / WORDS.length) * 0.38;
-  const opacity = useTransform(progress, [start, end], [0.14, 1]);
-  const label = index === 0 ? `“${word}` : index === WORDS.length - 1 ? `${word}”` : word;
-
+function BriefCopy() {
   return (
-    <motion.span className="inline-block" style={{ opacity }}>
-      {label}
-      {index < WORDS.length - 1 ? "\u00a0" : null}
-    </motion.span>
+    <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
+      <div className="space-y-5 text-base leading-relaxed text-black/80 md:text-lg lg:col-span-7">
+        {philosophyBrief.paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </div>
+      <div className="flex items-start lg:col-span-4 lg:col-start-9 lg:justify-end">
+        <ButtonLink href="/about">About FILFIL</ButtonLink>
+      </div>
+    </div>
   );
 }
 
@@ -59,7 +44,7 @@ export function Philosophy() {
     return (
       <section id="philosophy" aria-label="Our philosophy" className="bg-beige">
         <div className="mx-auto max-w-[1440px] px-5 pt-28 pb-10 sm:px-6 sm:pt-32">
-          <p className={quoteClass}>“{philosophyBrief.quote}”</p>
+          <BriefCopy />
         </div>
         <div className="relative mx-3 aspect-[16/10] overflow-hidden rounded-2xl bg-black/5 sm:mx-4">
           <Image
@@ -93,12 +78,7 @@ export function Philosophy() {
           className="mx-auto max-w-[1440px] px-4 pt-28 sm:px-6 sm:pt-32"
           style={{ opacity: quoteOpacity }}
         >
-          <p className="sr-only">“{philosophyBrief.quote}”</p>
-          <p aria-hidden className={quoteClass}>
-            {WORDS.map((word, index) => (
-              <BriefWord key={`${word}-${index}`} word={word} index={index} progress={scrollYProgress} />
-            ))}
-          </p>
+          <BriefCopy />
         </motion.div>
 
         <motion.div

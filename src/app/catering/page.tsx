@@ -61,11 +61,6 @@ export default function CateringPage() {
                   sizes="(min-width: 1024px) 40vw, 100vw"
                 />
               </ImageReveal>
-              <p className="mt-8 max-w-sm text-lg leading-relaxed">
-                Tell us about your event. We&apos;ll follow up with availability and a
-                tailored selection. Catering packages will be published here as they
-                are confirmed.
-              </p>
             </Reveal>
             <div id="enquire" className="scroll-mt-32 lg:col-span-6 lg:col-start-7">
               <Reveal>

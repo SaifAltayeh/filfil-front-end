@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { submitCatering } from "@/lib/actions";
 import { cateringSchema, type CateringInput } from "@/lib/validation";
 import { Button } from "@/components/ui/Button";
+import { SuccessDialog } from "@/components/ui/SuccessDialog";
 import { Field, FormStatus, Select, TextArea, TextInput } from "./Field";
 
 const eventTypes = [
@@ -22,6 +23,7 @@ export function CateringForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<CateringInput>({ resolver: zodResolver(cateringSchema) });
 
@@ -37,10 +39,9 @@ export function CateringForm() {
     setServerError(result.error);
   });
 
-  if (success) return <FormStatus success />;
-
   return (
-    <form onSubmit={onSubmit} className="space-y-8" noValidate>
+    <>
+      <form onSubmit={onSubmit} className="space-y-8" noValidate>
       <Field label="Full Name" htmlFor="name" error={errors.name?.message}>
         <TextInput id="name" autoComplete="name" {...register("name")} />
       </Field>
@@ -82,5 +83,15 @@ export function CateringForm() {
         {isSubmitting ? "Sending" : "Submit Enquiry"}
       </Button>
     </form>
+    <SuccessDialog
+      open={success}
+      title="Form submitted."
+      message="Your form has been submitted. We'll follow up with availability and a tailored selection."
+      onClose={() => {
+        setSuccess(false);
+        reset();
+      }}
+    />
+    </>
   );
 }

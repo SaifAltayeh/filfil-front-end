@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { ImageReveal, Reveal } from "@/components/ui/Reveal";
 import { PageIntro } from "@/components/ui/PageIntro";
-import { philosophyPillars } from "@/data/philosophy";
+import { PhilosophyCarousel } from "@/components/about/PhilosophyCarousel";
 import { media } from "@/lib/assets";
 
 export const metadata: Metadata = {
@@ -150,24 +150,28 @@ export default function AboutPage() {
 
       <section className="bg-beige py-24 md:py-32">
         <Container>
-          <Reveal>
-            <p className="eyebrow mb-8">Food Philosophy</p>
-            <h2 className="headline max-w-[16ch] text-[clamp(2.2rem,5.5vw,5.5rem)]">
-              What goes into our food matters.
-            </h2>
-            <p className="mt-6 text-2xl">True Ingredients. Bold Flavours.</p>
-            <div className="measure mt-8 space-y-4 text-lg leading-relaxed">
-              <p>We believe great food starts with ingredients you can trust.</p>
-              <p>
-                Our philosophy is simple: carefully selected ingredients, thoughtful
-                preparation, and exciting flavours.
-              </p>
-              <p>
-                We take inspiration from Mediterranean food traditions while creating
-                dishes that feel fresh, modern, and full of character.
-              </p>
-            </div>
-          </Reveal>
+          <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
+            <Reveal className="lg:col-span-7">
+              <p className="eyebrow mb-8">Food Philosophy</p>
+              <h2 className="headline max-w-[16ch] text-[clamp(2.2rem,5.5vw,5.5rem)]">
+                What goes into our food matters.
+              </h2>
+              <div className="measure mt-8 space-y-4 text-lg leading-relaxed">
+                <p>We believe great food starts with ingredients you can trust.</p>
+                <p>
+                  Our philosophy is simple: carefully selected ingredients, thoughtful
+                  preparation, and exciting flavours.
+                </p>
+                <p>
+                  We take inspiration from Mediterranean food traditions while creating
+                  dishes that feel fresh, modern, and full of character.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.08} className="lg:col-span-5 lg:col-start-8">
+              <p className="text-lg font-bold md:text-xl">True Ingredients. Bold Flavours.</p>
+            </Reveal>
+          </div>
 
           <div className="mt-16 grid gap-4 md:grid-cols-2">
             <ImageReveal>
@@ -192,19 +196,7 @@ export default function AboutPage() {
             </ImageReveal>
           </div>
 
-          <div className="mt-16 grid gap-10 border-t border-black/10 pt-16 sm:grid-cols-2 lg:grid-cols-3">
-            {philosophyPillars.map((pillar) => (
-              <Reveal key={pillar.id}>
-                <article>
-                  <p className="eyebrow mb-4">{pillar.number}</p>
-                  <h3 className="font-display text-[clamp(1.5rem,2.2vw,2rem)] leading-[0.95] tracking-[-0.03em]">
-                    {pillar.title}.
-                  </h3>
-                  <p className="mt-4 text-[15px] leading-relaxed text-black/70">{pillar.body}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
+          <PhilosophyCarousel />
         </Container>
       </section>
 

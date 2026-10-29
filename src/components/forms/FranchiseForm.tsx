@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { submitFranchise } from "@/lib/actions";
 import { franchiseSchema, type FranchiseInput } from "@/lib/validation";
 import { Button } from "@/components/ui/Button";
+import { SuccessDialog } from "@/components/ui/SuccessDialog";
 import { Field, FormStatus, TextArea, TextInput } from "./Field";
 
 export function FranchiseForm() {
@@ -14,6 +15,7 @@ export function FranchiseForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<FranchiseInput>({ resolver: zodResolver(franchiseSchema) });
 
@@ -29,10 +31,9 @@ export function FranchiseForm() {
     setServerError(result.error);
   });
 
-  if (success) return <FormStatus success />;
-
   return (
-    <form onSubmit={onSubmit} className="space-y-8" noValidate>
+    <>
+      <form onSubmit={onSubmit} className="space-y-8" noValidate>
       <Field label="Full Name" htmlFor="name" error={errors.name?.message}>
         <TextInput id="name" autoComplete="name" {...register("name")} />
       </Field>
@@ -62,6 +63,16 @@ export function FranchiseForm() {
       <Button type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Sending" : "Submit Enquiry"}
       </Button>
-    </form>
+      </form>
+      <SuccessDialog
+        open={success}
+        title="Form submitted."
+        message="Your form has been submitted. We'll be in touch soon."
+        onClose={() => {
+          setSuccess(false);
+          reset();
+        }}
+      />
+    </>
   );
 }

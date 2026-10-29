@@ -4,13 +4,13 @@ import { PageIntro } from "@/components/ui/PageIntro";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Draft privacy policy for the FILFIL website. Pending legal review.",
+  description: "Privacy policy for the FILFIL website.",
 };
 
 const sections = [
   {
     title: "Who we are",
-    body: "This website is operated by FILFIL, a restaurant based in Sweifieh Village, Amman, Jordan. This page is a working draft pending legal review and does not constitute formal legal advice.",
+    body: "This website is operated by FILFIL, a restaurant based in Sweifieh Village, Amman, Jordan.",
   },
   {
     title: "What we collect",
@@ -33,12 +33,7 @@ const sections = [
 export default function PrivacyPage() {
   return (
     <main>
-      <PageIntro title="Privacy." kicker="Draft for legal review.">
-        <p>
-          This is a working privacy notice for the FILFIL website. It should be
-          reviewed by counsel before being treated as a final policy.
-        </p>
-      </PageIntro>
+      <PageIntro title="Privacy." />
       <section className="bg-beige pb-24">
         <Container>
           <div className="max-w-2xl space-y-10 text-lg leading-relaxed">

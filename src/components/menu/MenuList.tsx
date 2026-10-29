@@ -63,7 +63,9 @@ export function MenuList() {
                 <MenuCard key={item.id} item={item} categoryId={category.id} />
               ))}
             </div>
-            {category.note ? <p className="mt-8 text-sm text-black/60">{category.note}</p> : null}
+            {category.note ? (
+              <p className="mt-8 text-sm font-bold text-black">{category.note}</p>
+            ) : null}
           </section>
         );
       })}

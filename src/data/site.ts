@@ -16,6 +16,8 @@ export const site = {
     country: "Jordan",
     display: "Sweifieh Village, Amman, Jordan.",
     mapsQuery: "FILFIL Sweifieh Village Amman Jordan",
+    lat: 31.948179,
+    lng: 35.864729,
   },
   get url() {
     return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -24,19 +26,20 @@ export const site = {
     return process.env.NEXT_PUBLIC_CONTACT_EMAIL || null;
   },
   get phone() {
-    return process.env.NEXT_PUBLIC_CONTACT_PHONE || null;
+    return process.env.NEXT_PUBLIC_CONTACT_PHONE || "+962 7 9763 6510";
   },
   get instagram() {
     return process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/filfiljo/";
   },
   get tiktok() {
-    return process.env.NEXT_PUBLIC_TIKTOK_URL || null;
+    return process.env.NEXT_PUBLIC_TIKTOK_URL || "https://www.tiktok.com/@filfiljo";
   },
   get mapsEmbedUrl() {
     if (process.env.NEXT_PUBLIC_MAPS_EMBED_URL) {
       return process.env.NEXT_PUBLIC_MAPS_EMBED_URL;
     }
-    return "https://maps.google.com/maps?q=FILFIL%20Sweifieh%20Village%20Amman%20Jordan&output=embed";
+    const { lat, lng } = this.location;
+    return `https://maps.google.com/maps?q=${lat},${lng}+%28FILFIL%29&z=16&ie=UTF8&iwloc=A&output=embed`;
   },
 } as const;
 

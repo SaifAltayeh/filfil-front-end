@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { mainNav } from "@/data/navigation";
 import { site } from "@/data/site";
 import { Logo } from "@/components/ui/Logo";
+import { SocialLinks } from "@/components/ui/SocialIcons";
 import { easeOutExpo } from "@/lib/motion";
 
 export function MenuOverlay({
@@ -132,16 +133,7 @@ export function MenuOverlay({
 
           <div className="flex flex-wrap items-end justify-between gap-6 px-5 py-8 md:px-10 lg:px-16">
             <p className="eyebrow max-w-xs text-beige/70">{site.location.display}</p>
-            <div className="flex gap-6">
-              <a href={site.instagram} className="eyebrow nav-link" target="_blank" rel="noreferrer">
-                Instagram
-              </a>
-              {site.tiktok ? (
-                <a href={site.tiktok} className="eyebrow nav-link" target="_blank" rel="noreferrer">
-                  TikTok
-                </a>
-              ) : null}
-            </div>
+            <SocialLinks />
           </div>
         </motion.div>
       ) : null}
