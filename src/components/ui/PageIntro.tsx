@@ -6,12 +6,14 @@ export function PageIntro({
   eyebrow,
   title,
   kicker,
+  aside,
   children,
   className,
 }: {
   eyebrow?: string;
   title: string;
   kicker?: string;
+  aside?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
 }) {
@@ -22,6 +24,7 @@ export function PageIntro({
           <Reveal className="lg:col-span-6">
             {eyebrow ? <p className="eyebrow mb-5">{eyebrow}</p> : null}
             <h1 className="headline max-w-[11ch] text-[clamp(2rem,4.2vw,3.4rem)]">{title}</h1>
+            {aside ? <div className="mt-10">{aside}</div> : null}
           </Reveal>
           {kicker || children ? (
             <Reveal delay={0.08} className="lg:col-span-5 lg:col-start-8">

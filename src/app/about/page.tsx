@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { ImageReveal, Reveal } from "@/components/ui/Reveal";
 import { PageIntro } from "@/components/ui/PageIntro";
+import { AboutIntroVideo } from "@/components/about/AboutIntroVideo";
 import { PhilosophyCarousel } from "@/components/about/PhilosophyCarousel";
 import { media } from "@/lib/assets";
 
@@ -40,15 +41,7 @@ export default function AboutPage() {
       <section className="bg-beige pb-8 md:pb-12">
         <Container>
           <ImageReveal>
-            <Image
-              src={media.guestsSharing.src}
-              alt={media.guestsSharing.alt}
-              width={media.guestsSharing.width}
-              height={media.guestsSharing.height}
-              className="aspect-[16/10] h-auto w-full object-cover md:aspect-[21/9]"
-              sizes="100vw"
-              priority
-            />
+            <AboutIntroVideo />
           </ImageReveal>
         </Container>
       </section>
@@ -109,10 +102,10 @@ export default function AboutPage() {
             <Reveal className="md:col-span-7">
               <ImageReveal>
                 <Image
-                  src={media.tableGreenWall.src}
-                  alt={media.tableGreenWall.alt}
-                  width={media.tableGreenWall.width}
-                  height={media.tableGreenWall.height}
+                  src={media.storyLeft.src}
+                  alt={media.storyLeft.alt}
+                  width={media.storyLeft.width}
+                  height={media.storyLeft.height}
                   className="aspect-[4/3] h-auto w-full object-cover"
                   sizes="(min-width: 768px) 58vw, 100vw"
                 />
@@ -134,10 +127,10 @@ export default function AboutPage() {
               <Reveal delay={0.08}>
                 <ImageReveal>
                   <Image
-                    src={media.guestsLaughing.src}
-                    alt={media.guestsLaughing.alt}
-                    width={media.guestsLaughing.width}
-                    height={media.guestsLaughing.height}
+                    src={media.storyRightBelow.src}
+                    alt={media.storyRightBelow.alt}
+                    width={media.storyRightBelow.width}
+                    height={media.storyRightBelow.height}
                     className="aspect-[4/3] h-auto w-full object-cover"
                     sizes="(min-width: 768px) 38vw, 100vw"
                   />
@@ -150,26 +143,23 @@ export default function AboutPage() {
 
       <section className="bg-beige py-24 md:py-32">
         <Container>
-          <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
-            <Reveal className="lg:col-span-7">
+          <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="lg:col-span-6">
               <p className="eyebrow mb-8">Food Philosophy</p>
               <h2 className="headline max-w-[16ch] text-[clamp(2.2rem,5.5vw,5.5rem)]">
                 What goes into our food matters.
               </h2>
-              <div className="measure mt-8 space-y-4 text-lg leading-relaxed">
-                <p>We believe great food starts with ingredients you can trust.</p>
-                <p>
-                  Our philosophy is simple: carefully selected ingredients, thoughtful
-                  preparation, and exciting flavours.
-                </p>
-                <p>
-                  We take inspiration from Mediterranean food traditions while creating
-                  dishes that feel fresh, modern, and full of character.
-                </p>
-              </div>
             </Reveal>
-            <Reveal delay={0.08} className="lg:col-span-5 lg:col-start-8">
-              <p className="text-lg font-bold md:text-xl">True Ingredients. Bold Flavours.</p>
+            <Reveal delay={0.08} className="space-y-4 text-lg leading-relaxed lg:col-span-5 lg:col-start-8">
+              <p>We believe great food starts with ingredients you can trust.</p>
+              <p>
+                Our philosophy is simple: carefully selected ingredients, thoughtful
+                preparation, and exciting flavours.
+              </p>
+              <p>
+                We take inspiration from Mediterranean food traditions while creating
+                dishes that feel fresh, modern, and full of character.
+              </p>
             </Reveal>
           </div>
 

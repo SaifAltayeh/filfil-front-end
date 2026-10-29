@@ -12,9 +12,11 @@ import { Field, FormStatus, Select, TextArea, TextInput } from "./Field";
 export function CareerForm({
   defaultPosition,
   lockedPosition = false,
+  positionAsText = false,
 }: {
   defaultPosition?: string;
   lockedPosition?: boolean;
+  positionAsText?: boolean;
 }) {
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
@@ -28,7 +30,9 @@ export function CareerForm({
     formState: { errors, isSubmitting },
   } = useForm<CareerInput>({
     resolver: zodResolver(careerSchema),
-    defaultValues: { position: defaultPosition ?? generalPositionLabel },
+    defaultValues: {
+      position: positionAsText ? "" : (defaultPosition ?? generalPositionLabel),
+    },
   });
 
   const onSubmit = handleSubmit(async (values, event) => {
@@ -59,7 +63,11 @@ export function CareerForm({
       <Field label="Phone Number" htmlFor="phone" error={errors.phone?.message}>
         <TextInput id="phone" type="tel" autoComplete="tel" {...register("phone")} />
       </Field>
-      {lockedPosition ? (
+      {positionAsText ? (
+        <Field label="Position of Interest" htmlFor="position" error={errors.position?.message}>
+          <TextInput id="position" placeholder="Kitchen Crew, Front of House…" {...register("position")} />
+        </Field>
+      ) : lockedPosition ? (
         <input type="hidden" {...register("position")} />
       ) : (
         <Field label="Position of Interest" htmlFor="position" error={errors.position?.message}>

@@ -6,7 +6,6 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ImageReveal, Reveal } from "@/components/ui/Reveal";
 import { PageIntro } from "@/components/ui/PageIntro";
-import { generalPositionLabel } from "@/data/careers";
 import { media } from "@/lib/assets";
 
 export const metadata: Metadata = {
@@ -29,34 +28,29 @@ export default function CareersPage() {
           From our kitchen to our guest experience, every person plays a part in
           making FILFIL what it is.
         </p>
+        <p className="mt-4">
+          We value teamwork, positive energy, fresh ideas, and people who take
+          pride in what they do. We&apos;re growing, evolving, and always looking
+          for great people to grow with us.
+        </p>
+        <p className="mt-4">Think you&apos;d be a great fit? We&apos;d love to hear from you.</p>
         <div className="mt-8">
           <ButtonLink href="#positions">View Open Positions</ButtonLink>
         </div>
       </PageIntro>
 
-      <section className="bg-beige">
-        <div className="grid lg:grid-cols-2">
-          <ImageReveal>
-            <Image
-              src={media.guestsEating.src}
-              alt={media.guestsEating.alt}
-              width={media.guestsEating.width}
-              height={media.guestsEating.height}
-              className="h-full min-h-[28rem] w-full object-cover lg:min-h-[80vh]"
-              sizes="(min-width: 1024px) 50vw, 100vw"
-            />
-          </ImageReveal>
-          <Reveal className="flex flex-col justify-end px-5 py-16 md:px-10 md:py-20 lg:px-16">
-            <p className="max-w-md text-lg leading-relaxed md:text-xl">
-              We value teamwork, positive energy, fresh ideas, and people who take
-              pride in what they do. We&apos;re growing, evolving, and always looking
-              for great people to grow with us.
-            </p>
-            <p className="mt-6 max-w-md text-lg">
-              Think you&apos;d be a great fit? We&apos;d love to hear from you.
-            </p>
-          </Reveal>
-        </div>
+      <section className="bg-beige pb-8 md:pb-12">
+        <ImageReveal>
+          <Image
+            src={media.nextLevelShawarma.src}
+            alt={media.nextLevelShawarma.alt}
+            width={media.nextLevelShawarma.width}
+            height={media.nextLevelShawarma.height}
+            className="aspect-[16/10] h-auto w-full object-cover md:aspect-[21/9]"
+            sizes="100vw"
+            priority
+          />
+        </ImageReveal>
       </section>
 
       <section id="positions" className="scroll-mt-28 bg-beige py-24">
@@ -79,7 +73,7 @@ export default function CareersPage() {
               </p>
             </Reveal>
             <div className="lg:col-span-7 lg:col-start-6">
-              <CareerForm defaultPosition={generalPositionLabel} lockedPosition />
+              <CareerForm positionAsText />
             </div>
           </div>
         </Container>

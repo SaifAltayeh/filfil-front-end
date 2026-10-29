@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { mainNav } from "@/data/navigation";
-import { site } from "@/data/site";
 import { Logo } from "@/components/ui/Logo";
 import { SocialLinks } from "@/components/ui/SocialIcons";
 import { easeOutExpo } from "@/lib/motion";
@@ -66,7 +65,7 @@ export function MenuOverlay({
           role="dialog"
           aria-modal="true"
           aria-label="Site menu"
-          className="fixed inset-0 z-[80] flex min-h-svh flex-col bg-black text-beige"
+          className="fixed inset-0 z-[80] flex min-h-svh flex-col overflow-hidden bg-black text-beige"
           initial={reduced ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -89,7 +88,7 @@ export function MenuOverlay({
             </button>
           </div>
 
-          <nav className="flex flex-1 flex-col justify-center px-5 py-8 md:px-10 lg:px-16">
+          <nav className="flex min-h-0 flex-1 flex-col justify-center overflow-y-auto px-5 py-8 pb-24 md:px-10 lg:px-16">
             <motion.ul
               className="flex flex-col gap-2 md:gap-3"
               initial="hidden"
@@ -117,7 +116,7 @@ export function MenuOverlay({
                   <Link
                     href={item.href}
                     onClick={onClose}
-                    className="headline group flex items-baseline gap-4 text-[clamp(2.4rem,8vw,7rem)] text-beige"
+                    className="headline group flex items-baseline gap-4 text-[clamp(2rem,8vw,7rem)] text-beige"
                   >
                     <span className="eyebrow hidden pt-2 text-beige/50 sm:inline">
                       0{index + 1}
@@ -131,8 +130,7 @@ export function MenuOverlay({
             </motion.ul>
           </nav>
 
-          <div className="flex flex-wrap items-end justify-between gap-6 px-5 py-8 md:px-10 lg:px-16">
-            <p className="eyebrow max-w-xs text-beige/70">{site.location.display}</p>
+          <div className="absolute right-5 bottom-8 z-10 flex items-center md:right-10 md:bottom-10 lg:right-16">
             <SocialLinks />
           </div>
         </motion.div>

@@ -2,25 +2,41 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "motion/react";
 import { ButtonLink } from "@/components/ui/Button";
 import { philosophyBrief } from "@/data/philosophy";
 import { media } from "@/lib/assets";
 
+const WORDS = philosophyBrief.quote.split(/\s+/);
 const IMAGE = media.tableGreenWall;
+const quoteClass =
+  "mx-auto max-w-3xl text-center font-sans text-[clamp(1.6rem,3.1vw,2.5rem)] leading-[1.2] tracking-[-0.01em] text-balance";
 
-function BriefCopy() {
+function BriefWord({
+  word,
+  index,
+  progress,
+}: {
+  word: string;
+  index: number;
+  progress: MotionValue<number>;
+}) {
+  const start = (index / WORDS.length) * 0.38;
+  const end = ((index + 1) / WORDS.length) * 0.38;
+  const opacity = useTransform(progress, [start, end], [0.14, 1]);
+  const label = index === 0 ? `“${word}` : index === WORDS.length - 1 ? `${word}”` : word;
+
   return (
-    <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
-      <div className="space-y-5 text-base leading-relaxed text-black/80 md:text-lg lg:col-span-7">
-        {philosophyBrief.paragraphs.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
-      </div>
-      <div className="flex items-start lg:col-span-4 lg:col-start-9 lg:justify-end">
-        <ButtonLink href="/about">About FILFIL</ButtonLink>
-      </div>
-    </div>
+    <motion.span className="inline-block" style={{ opacity }}>
+      {label}
+      {index < WORDS.length - 1 ? "\u00a0" : null}
+    </motion.span>
   );
 }
 
@@ -44,7 +60,7 @@ export function Philosophy() {
     return (
       <section id="philosophy" aria-label="Our philosophy" className="bg-beige">
         <div className="mx-auto max-w-[1440px] px-5 pt-28 pb-10 sm:px-6 sm:pt-32">
-          <BriefCopy />
+          <p className={quoteClass}>“{philosophyBrief.quote}”</p>
         </div>
         <div className="relative mx-3 aspect-[16/10] overflow-hidden rounded-2xl bg-black/5 sm:mx-4">
           <Image
@@ -56,11 +72,18 @@ export function Philosophy() {
           />
           <span
             aria-hidden
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-black/55 to-transparent"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-linear-to-t from-black via-black/70 to-transparent"
           />
-          <p className="headline absolute inset-x-0 bottom-0 max-w-md p-6 text-[clamp(1.6rem,4vw,2.6rem)] text-white sm:p-10">
-            {philosophyBrief.caption}
-          </p>
+          <div className="absolute inset-x-0 bottom-0 flex max-h-[75%] flex-col gap-4 overflow-y-auto p-5 text-white sm:gap-8 sm:p-10 md:max-h-none md:flex-row md:items-end md:justify-between">
+            <div className="max-w-xl space-y-3 text-sm leading-relaxed sm:space-y-4 sm:text-base md:text-lg">
+              {philosophyBrief.overlay.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <ButtonLink href="/about" variant="outline" tone="light" className="self-start md:self-auto">
+              About FILFIL
+            </ButtonLink>
+          </div>
         </div>
       </section>
     );
@@ -78,7 +101,12 @@ export function Philosophy() {
           className="mx-auto max-w-[1440px] px-4 pt-28 sm:px-6 sm:pt-32"
           style={{ opacity: quoteOpacity }}
         >
-          <BriefCopy />
+          <p className="sr-only">“{philosophyBrief.quote}”</p>
+          <p aria-hidden className={quoteClass}>
+            {WORDS.map((word, index) => (
+              <BriefWord key={`${word}-${index}`} word={word} index={index} progress={scrollYProgress} />
+            ))}
+          </p>
         </motion.div>
 
         <motion.div
@@ -98,16 +126,23 @@ export function Philosophy() {
           />
           <motion.span
             aria-hidden
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-black/55 to-transparent"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-linear-to-t from-black via-black/70 to-transparent"
             style={{ opacity: washOpacity }}
           />
           <motion.div
-            className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-10"
+            className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-10"
             style={{ opacity: captionOpacity, y: captionY }}
           >
-            <p className="headline max-w-md text-[clamp(1.6rem,4vw,2.6rem)]">
-              {philosophyBrief.caption}
-            </p>
+            <div className="flex max-h-[75%] flex-col gap-4 overflow-y-auto md:max-h-none md:flex-row md:items-end md:justify-between md:gap-8">
+              <div className="max-w-xl space-y-3 text-sm leading-relaxed sm:space-y-4 sm:text-base md:text-lg">
+                {philosophyBrief.overlay.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              <ButtonLink href="/about" variant="outline" tone="light" className="self-start md:self-auto">
+                About FILFIL
+              </ButtonLink>
+            </div>
           </motion.div>
         </motion.div>
       </div>

@@ -3,7 +3,7 @@ import { cn } from "@/lib/cn";
 
 function InstagramIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
+    <svg viewBox="0 0 24 24" className="h-full w-full" aria-hidden>
       <rect
         x="3.5"
         y="3.5"
@@ -22,7 +22,7 @@ function InstagramIcon() {
 
 function TikTokIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
+    <svg viewBox="0 0 24 24" className="h-full w-full" aria-hidden>
       <path
         fill="currentColor"
         d="M14.2 3h2.3c.2 1.9 1.4 3.4 3.5 3.8v2.3c-1.2 0-2.3-.4-3.3-1.1v6.6c0 3.4-2.7 6-6.2 6S4.3 18 4.3 14.6c0-3.3 2.6-6 5.9-6.1v2.4c-2 .1-3.5 1.7-3.5 3.7 0 2 1.7 3.6 3.7 3.6s3.6-1.6 3.6-3.6V3Z"
@@ -39,27 +39,31 @@ export function SocialLinks({
   iconClassName?: string;
 }) {
   return (
-    <div className={cn("flex items-center gap-4", className)}>
+    <div className={cn("flex items-center gap-5", className)}>
       <a
         href={site.instagram}
-        className={cn("transition-opacity hover:opacity-60", iconClassName)}
+        className={cn(
+          "flex h-7 w-7 items-center justify-center text-current transition-opacity hover:opacity-60",
+          iconClassName,
+        )}
         target="_blank"
         rel="noreferrer"
         aria-label="FILFIL on Instagram"
       >
         <InstagramIcon />
       </a>
-      {site.tiktok ? (
-        <a
-          href={site.tiktok}
-          className={cn("transition-opacity hover:opacity-60", iconClassName)}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="FILFIL on TikTok"
-        >
-          <TikTokIcon />
-        </a>
-      ) : null}
+      <a
+        href={site.tiktok}
+        className={cn(
+          "flex h-7 w-7 items-center justify-center text-current transition-opacity hover:opacity-60",
+          iconClassName,
+        )}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="FILFIL on TikTok"
+      >
+        <TikTokIcon />
+      </a>
     </div>
   );
 }

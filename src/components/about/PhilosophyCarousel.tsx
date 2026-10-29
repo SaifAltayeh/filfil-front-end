@@ -12,41 +12,56 @@ export function PhilosophyCarousel() {
     const root = scrollerRef.current;
     if (!root) return;
 
-    const sync = () => {
-      const slides = [...root.querySelectorAll<HTMLElement>("[data-slide]")];
-      const mid = root.getBoundingClientRect().left + root.clientWidth / 2;
-      let best = 0;
-      let bestDist = Infinity;
-      slides.forEach((slide, index) => {
-        const rect = slide.getBoundingClientRect();
-        const dist = Math.abs(rect.left + rect.width / 2 - mid);
-        if (dist < bestDist) {
-          bestDist = dist;
-          best = index;
-        }
-      });
-      setActive(best);
+    const slides = () => [...root.querySelectorAll<HTMLElement>("[data-slide]")];
+
+    const padEnd = () => {
+      const slide = slides()[0];
+      if (!slide) return;
+      const pl = Number.parseFloat(getComputedStyle(root).paddingLeft);
+      const extra = Math.max(0, root.clientWidth - slide.getBoundingClientRect().width - pl);
+      root.style.paddingRight = `${extra}px`;
     };
 
-    sync();
+    const sync = () => {
+      const items = slides();
+      const snapX =
+        root.getBoundingClientRect().left +
+        Number.parseFloat(getComputedStyle(root).paddingLeft);
+      const next = items.findIndex((slide) => slide.getBoundingClientRect().right > snapX + 40);
+      setActive(next === -1 ? Math.max(0, items.length - 1) : next);
+    };
+
+    const layout = () => {
+      padEnd();
+      sync();
+    };
+
+    layout();
+    const ro = new ResizeObserver(layout);
+    ro.observe(root);
     root.addEventListener("scroll", sync, { passive: true });
-    window.addEventListener("resize", sync);
     return () => {
+      ro.disconnect();
       root.removeEventListener("scroll", sync);
-      window.removeEventListener("resize", sync);
     };
   }, []);
 
   const goTo = (index: number) => {
     const root = scrollerRef.current;
     const slide = root?.querySelectorAll<HTMLElement>("[data-slide]")[index];
-    slide?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    if (!root || !slide) return;
+    const padding = Number.parseFloat(getComputedStyle(root).paddingLeft);
+    const left =
+      root.scrollLeft +
+      (slide.getBoundingClientRect().left - root.getBoundingClientRect().left) -
+      padding;
+    root.scrollTo({ left, behavior: "smooth" });
   };
 
   return (
     <div
       ref={scrollerRef}
-      className="-mx-5 flex snap-x snap-mandatory gap-8 overflow-x-auto pt-16 pb-4 [scrollbar-width:none] [scroll-padding-inline:max(1.25rem,calc(50%-11rem))] px-[max(1.25rem,calc(50%-11rem))] md:-mx-10 lg:-mx-16 [&::-webkit-scrollbar]:hidden"
+      className="-mx-5 flex snap-x snap-mandatory gap-8 overflow-x-auto overscroll-x-contain pt-16 pb-4 pl-5 scroll-ps-5 [scrollbar-width:none] md:-mx-10 md:pl-10 md:scroll-ps-10 lg:-mx-16 lg:pl-16 lg:scroll-ps-16 [&::-webkit-scrollbar]:hidden"
     >
       {philosophyPillars.map((pillar, index) => (
         <article
@@ -54,7 +69,7 @@ export function PhilosophyCarousel() {
           data-slide
           onClick={() => goTo(index)}
           className={cn(
-            "w-[min(78vw,22rem)] shrink-0 snap-center border-t border-black/10 pt-8 transition-opacity duration-300",
+            "w-[min(78vw,22rem)] shrink-0 snap-start border-t border-black/10 pt-8 transition-opacity duration-300",
             index === active ? "opacity-100" : "opacity-30",
           )}
         >

@@ -23,7 +23,7 @@ export const site = {
     return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   },
   get email() {
-    return process.env.NEXT_PUBLIC_CONTACT_EMAIL || null;
+    return process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@filfiljo.com";
   },
   get phone() {
     return process.env.NEXT_PUBLIC_CONTACT_PHONE || "+962 7 9763 6510";
@@ -34,12 +34,16 @@ export const site = {
   get tiktok() {
     return process.env.NEXT_PUBLIC_TIKTOK_URL || "https://www.tiktok.com/@filfiljo";
   },
+  get mapsUrl() {
+    const { lat, lng } = this.location;
+    return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+  },
   get mapsEmbedUrl() {
     if (process.env.NEXT_PUBLIC_MAPS_EMBED_URL) {
       return process.env.NEXT_PUBLIC_MAPS_EMBED_URL;
     }
     const { lat, lng } = this.location;
-    return `https://maps.google.com/maps?q=${lat},${lng}+%28FILFIL%29&z=16&ie=UTF8&iwloc=A&output=embed`;
+    return `https://maps.google.com/maps?q=${lat},${lng}&z=16&output=embed`;
   },
 } as const;
 

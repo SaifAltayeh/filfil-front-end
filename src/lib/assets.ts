@@ -6,6 +6,7 @@ export const logos = {
 export const videos = {
   heroDesktop: "/assets/videos/hero-desktop.mp4",
   heroMobile: "/assets/videos/hero-mobile.mp4",
+  aboutGuests: "/assets/videos/about-guests.mp4",
 } as const;
 
 export const audio = {
@@ -49,6 +50,18 @@ export const media = {
     width: 2400,
     height: 1920,
   },
+  storyLeft: {
+    src: "/assets/media/story-left.jpg",
+    alt: "Illuminated filfil. sign above the restaurant entrance",
+    width: 2400,
+    height: 1920,
+  },
+  storyRightBelow: {
+    src: "/assets/media/story-right-below.jpg",
+    alt: "FILFIL crew member in a filfil. tee working in the kitchen",
+    width: 2000,
+    height: 1599,
+  },
   guestsEating: {
     src: "/assets/media/guests-eating.jpg",
     alt: "Two guests eating FILFIL shawarma sandwiches",
@@ -90,6 +103,12 @@ export const media = {
     alt: "FILFIL Shawarma Addict t-shirt held in front of the restaurant counter",
     width: 1920,
     height: 2400,
+  },
+  nextLevelShawarma: {
+    src: "/assets/media/next-level-shawarma.jpg",
+    alt: "FILFIL crew member wearing a Next Level Shawarma t-shirt",
+    width: 1024,
+    height: 819,
   },
   sauces: {
     src: "/assets/media/sauces.jpg",
