@@ -5,20 +5,21 @@ import { CareerForm } from "@/components/forms/CareerForm";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ImageReveal, Reveal } from "@/components/ui/Reveal";
+import { Brand } from "@/components/ui/Brand";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { media } from "@/lib/assets";
 
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Join the FILFIL crew in Amman. Explore open positions and apply directly from the listing.",
+    "Join the filfil crew in Amman. Explore open positions and apply directly from the listing.",
 };
 
 export default function CareersPage() {
   return (
     <main>
-      <PageIntro title="Join the FILFIL crew." kicker="Good People Make Great Things Happen.">
-        <p>At FILFIL, great food starts with great people.</p>
+      <PageIntro title={<>Join the <Brand /> crew.</>} kicker="Good People Make Great Things Happen.">
+        <p>At filfil, great food starts with great people.</p>
         <p className="mt-4">
           We&apos;re building a team of passionate, creative, and ambitious individuals
           who believe in good food, genuine hospitality, and doing things a little
@@ -26,7 +27,7 @@ export default function CareersPage() {
         </p>
         <p className="mt-4">
           From our kitchen to our guest experience, every person plays a part in
-          making FILFIL what it is.
+          making filfil what it is.
         </p>
         <p className="mt-4">
           We value teamwork, positive energy, fresh ideas, and people who take
@@ -69,7 +70,7 @@ export default function CareersPage() {
               <h2 className="headline text-4xl md:text-5xl">General positions.</h2>
               <p className="mt-6 max-w-sm text-lg leading-relaxed">
                 No listing that fits? Send a general application and we&apos;ll keep you
-                in mind as FILFIL grows.
+                in mind as filfil grows.
               </p>
             </Reveal>
             <div className="lg:col-span-7 lg:col-start-6">

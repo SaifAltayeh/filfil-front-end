@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Brand } from "@/components/ui/Brand";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ImageReveal, Reveal } from "@/components/ui/Reveal";
@@ -30,7 +31,9 @@ export function Experience() {
     <section className="bg-black text-beige">
       <Container className="py-24 md:py-32 lg:py-40">
         <Reveal>
-          <p className="eyebrow mb-8 text-beige/55">The FILFIL Experience</p>
+          <p className="eyebrow mb-8 text-beige/55">
+            The <Brand /> Experience
+          </p>
         </Reveal>
         <div className="grid items-stretch gap-8 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-8">
@@ -42,11 +45,11 @@ export function Experience() {
           </Reveal>
           <Reveal delay={0.12} className="flex h-full flex-col justify-between gap-8 lg:col-span-4">
             <p className="text-lg leading-relaxed text-beige/75">
-              Great food is only part of it. FILFIL is a place for catch-ups,
+              Great food is only part of it. filfil is a place for catch-ups,
               drinks, and moments worth sharing — in Sweifieh Village, Amman.
             </p>
             <ButtonLink href="/about" tone="light" className="self-start">
-              Discover FILFIL
+              Discover <Brand />
             </ButtonLink>
           </Reveal>
         </div>

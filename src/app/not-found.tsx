@@ -1,3 +1,4 @@
+import { Brand } from "@/components/ui/Brand";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
@@ -13,7 +14,9 @@ export default function NotFound() {
         </h1>
         <p className="mt-6 max-w-md text-lg">The page you&apos;re looking for isn&apos;t on the menu.</p>
         <div className="mt-10">
-          <ButtonLink href="/">Back to FILFIL</ButtonLink>
+          <ButtonLink href="/">
+            Back to <Brand />
+          </ButtonLink>
         </div>
       </Container>
     </main>

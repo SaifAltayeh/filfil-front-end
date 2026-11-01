@@ -36,7 +36,7 @@ export const featuredProducts = [
   {
     id: "brewed-ice-tea",
     name: "Brewed Ice Tea",
-    caption: "Brewed Ice Tea, FILFIL, Amman",
+    caption: "Brewed Ice Tea, filfil, Amman",
     href: "/menu#beverages",
     price: 3.0,
     image: media.productIcedTea,

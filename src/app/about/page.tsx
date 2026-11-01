@@ -5,16 +5,17 @@ import { ImageReveal, Reveal } from "@/components/ui/Reveal";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { AboutIntroVideo } from "@/components/about/AboutIntroVideo";
 import { PhilosophyCarousel } from "@/components/about/PhilosophyCarousel";
+import { Brand } from "@/components/ui/Brand";
 import { media } from "@/lib/assets";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "FILFIL is a fresh take on modern Mediterranean food in Amman. Levantine roots, Mediterranean inspiration, and a place people want to come back to.",
+    "filfil is a fresh take on modern Mediterranean food in Amman. Levantine roots, Mediterranean inspiration, and a place people want to come back to.",
 };
 
 const story = [
-  "FILFIL started with a simple idea: to reimagine the Mediterranean food we love.",
+  "filfil started with a simple idea: to reimagine the Mediterranean food we love.",
   "Inspired by the rich flavours of the Levant, we wanted to celebrate our roots while creating something modern, exciting, and a little unexpected.",
   "Not another traditional restaurant. Not another ordinary shawarma spot. Something different.",
   "We started with familiar favourites, quality ingredients, and bold flavours, giving each dish our own creative twist.",
@@ -25,9 +26,9 @@ const story = [
 export default function AboutPage() {
   return (
     <main>
-      <PageIntro title="This is FILFIL." kicker="Rooted in Tradition. Inspired by Everything.">
+      <PageIntro title={<>This is <Brand />.</>} kicker="Rooted in Tradition. Inspired by Everything.">
         <p>
-          FILFIL is a fresh take on modern Mediterranean food in Sweifieh Village,
+          filfil is a fresh take on modern Mediterranean food in Sweifieh Village,
           Amman. Levantine roots, Mediterranean inspiration, and a place people want
           to come back to.
         </p>
@@ -70,7 +71,7 @@ export default function AboutPage() {
                 enjoyed without compromise.
               </p>
               <p>
-                But FILFIL is about more than what&apos;s on your plate. It&apos;s about
+                But filfil is about more than what&apos;s on your plate. It&apos;s about
                 bringing people together. A place to meet friends, enjoy good food and
                 drinks, share conversations, unwind, and simply enjoy being there.
               </p>
@@ -198,7 +199,7 @@ export default function AboutPage() {
               <br />
               Bold flavours.
               <br />
-              That&apos;s the FILFIL way.
+              That&apos;s the <Brand /> way.
             </p>
           </Reveal>
         </Container>

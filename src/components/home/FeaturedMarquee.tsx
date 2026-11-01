@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useReducedMotion } from "motion/react";
 import { featuredProducts } from "@/data/featured";
-import { formatPrice } from "@/data/menu";
 import { cn } from "@/lib/cn";
 
 type FeaturedProduct = (typeof featuredProducts)[number];
@@ -25,9 +24,6 @@ function ProductCard({ product }: { product: FeaturedProduct }) {
         </div>
         <figcaption className="mt-3 text-[15px] leading-snug tracking-tight text-black/60 sm:text-base">
           “{product.caption}”
-          <span className="mt-1 block text-[15px] text-black sm:text-base">
-            {formatPrice(product.price)}
-          </span>
         </figcaption>
       </Link>
     </figure>

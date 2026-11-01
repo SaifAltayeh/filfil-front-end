@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Archivo_Black, Archivo_Narrow } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { IntroLoader } from "@/components/layout/IntroLoader";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { site } from "@/data/site";
 import { locale } from "@/i18n/locale";
@@ -26,16 +25,16 @@ const archivoNarrow = Archivo_Narrow({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "FILFIL — Next Level Food",
-    template: "%s — FILFIL",
+    default: `${site.name} — Next Level Food`,
+    template: `%s — ${site.name}`,
   },
   description: site.description,
-  applicationName: "FILFIL",
+  applicationName: site.name,
   openGraph: {
     type: "website",
     locale: "en_JO",
-    siteName: "FILFIL",
-    title: "FILFIL — Next Level Food",
+    siteName: site.name,
+    title: `${site.name} — Next Level Food`,
     description: site.description,
     images: [
       {
@@ -48,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FILFIL — Next Level Food",
+    title: `${site.name} — Next Level Food`,
     description: site.description,
     images: [media.og.src],
   },
@@ -61,7 +60,7 @@ export const metadata: Metadata = {
 const restaurantJsonLd = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
-  name: "FILFIL",
+  name: site.name,
   description: site.description,
   servesCuisine: ["Mediterranean", "Levantine"],
   address: {
@@ -90,7 +89,6 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantJsonLd) }}
         />
         <SkipLink />
-        <IntroLoader />
         <Header />
         <div id="main" className="flex min-h-full flex-col">
           {children}

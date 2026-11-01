@@ -4,13 +4,13 @@ import { PageIntro } from "@/components/ui/PageIntro";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Privacy policy for the FILFIL website.",
+  description: "Privacy policy for the filfil website.",
 };
 
 const sections = [
   {
     title: "Who we are",
-    body: "This website is operated by FILFIL, a restaurant based in Sweifieh Village, Amman, Jordan.",
+    body: "This website is operated by filfil, a restaurant based in Sweifieh Village, Amman, Jordan.",
   },
   {
     title: "What we collect",

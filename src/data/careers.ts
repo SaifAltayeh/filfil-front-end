@@ -19,13 +19,13 @@ export const jobs: JobListing[] = [
     location: "Sweifieh Village, Amman",
     summary: "Be the first smile guests meet — service as considered as the food.",
     description:
-      "You’ll welcome guests, keep the floor moving, and make FILFIL feel like a place people want to stay.",
+      "You’ll welcome guests, keep the floor moving, and make filfil feel like a place people want to stay.",
     responsibilities: [
       "Greet guests, walk them through the menu, and take orders with care",
       "Keep the dining room, counter, and takeaway station guest-ready",
       "Run food, pack orders, and handle payments without slowing the line",
       "Flag guest notes to the kitchen and close loops before they become problems",
-      "Leave every table and every shift looking like FILFIL",
+      "Leave every table and every shift looking like filfil",
     ],
     requirements: [
       "Warm, confident communicator in Arabic and English",
@@ -40,11 +40,11 @@ export const jobs: JobListing[] = [
     department: "Kitchen",
     type: "Full-time",
     location: "Sweifieh Village, Amman",
-    summary: "Prep, grill, and plate the food that made FILFIL FILFIL.",
+    summary: "Prep, grill, and plate the food that made filfil filfil.",
     description:
       "You’ll work the line on shawarma, snack boxes, and sides — true ingredients, consistent flavour, no shortcuts.",
     responsibilities: [
-      "Prep ingredients to FILFIL specs and keep the line stocked",
+      "Prep ingredients to filfil specs and keep the line stocked",
       "Grill, assemble, and plate sandwiches, meals, snack boxes, and sides",
       "Hold ticket times without dropping quality or presentation",
       "Keep the station clean, labelled, and ready for the next rush",
@@ -65,7 +65,7 @@ export const jobs: JobListing[] = [
     location: "Sweifieh Village, Amman",
     summary: "Run the shift, back the crew, keep the standard high.",
     description:
-      "You’ll lead service, support both kitchen and floor, and keep FILFIL feeling tight when it gets busy.",
+      "You’ll lead service, support both kitchen and floor, and keep filfil feeling tight when it gets busy.",
     responsibilities: [
       "Open, run, and close the shift across kitchen and front of house",
       "Coach the crew in the moment and jump in wherever the line needs you",

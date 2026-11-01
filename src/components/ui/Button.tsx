@@ -48,8 +48,19 @@ export function ButtonLink({
   variant = "outline",
   tone = "dark",
 }: Common & { href: string }) {
+  const classNames = cn(base, styles[variant][tone], className);
+  const external = href.startsWith("http://") || href.startsWith("https://");
+
+  if (external) {
+    return (
+      <a href={href} target="_blank" rel="noreferrer" className={classNames}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <Link href={href} className={cn(base, styles[variant][tone], className)}>
+    <Link href={href} className={classNames}>
       {children}
     </Link>
   );

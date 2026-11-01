@@ -38,9 +38,9 @@ async function notifyEmail(type: SubmissionType, payload: Record<string, unknown
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: "FILFIL Website <noreply@filfil.local>",
+      from: "filfil Website <noreply@filfil.local>",
       to: [inbox],
-      subject: `New ${type} enquiry — FILFIL`,
+      subject: `New ${type} enquiry — filfil`,
       text: JSON.stringify(payload, null, 2),
     }),
   });

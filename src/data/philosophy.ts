@@ -2,7 +2,7 @@ export const philosophyBrief = {
   quote:
     "Rooted in the Levant. Inspired by the Mediterranean. Familiar flavours, true ingredients, a little unexpected twist.",
   overlay: [
-    "At FILFIL, we take the flavours we grew up loving and give them a fresh perspective.",
+    "At filfil, we take the flavours we grew up loving and give them a fresh perspective.",
     "Rooted in Levantine traditions and inspired by the wider Mediterranean, we bring familiar favourites to life through carefully selected ingredients, thoughtful preparation, and creative combinations.",
     "Good food, fresh thinking, and a little unexpected twist.",
   ],
@@ -19,7 +19,11 @@ export const philosophyPillars = [
     id: "clean-label",
     number: "02",
     title: "A Clean-Label Mindset",
-    body: "Good food shouldn't be unnecessarily complicated. We believe in ingredient transparency, straightforward recipes, and avoiding unnecessary additions wherever possible.",
+    body: [
+      "Good food, simple ingredients. Our chicken is always 100% chicken breast, our beef comes from lean cuts, and our signature sauces are made with just a few carefully selected ingredients.",
+      "We avoid unnecessary additives wherever possible, so you can feel good about what you’re eating.",
+      "No secrets. Just good food. Curious about our ingredients? Just ask our team.",
+    ],
   },
   {
     id: "fresh-thinking",
@@ -40,3 +44,9 @@ export const philosophyPillars = [
     body: "Food should make you feel good, but it should also taste incredible. Whether you're choosing something lighter or enjoying your favourite indulgence, flavour is always at the heart of what we do.",
   },
 ] as const;
+
+export type PhilosophyBody = (typeof philosophyPillars)[number]["body"];
+
+export function philosophyParagraphs(body: PhilosophyBody) {
+  return typeof body === "string" ? [body] : [...body];
+}

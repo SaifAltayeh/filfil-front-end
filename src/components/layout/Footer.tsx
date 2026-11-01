@@ -43,6 +43,16 @@ export function Footer() {
                   TikTok
                 </a>
               ) : null}
+              {site.spotify ? (
+                <a
+                  href={site.spotify}
+                  className="nav-link inline-block w-fit"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Spotify
+                </a>
+              ) : null}
             </div>
           </div>
 
@@ -61,7 +71,7 @@ export function Footer() {
         </div>
 
         <div className="flex flex-wrap items-end justify-between gap-6 pt-8 text-sm text-beige/55">
-          <p>© {year} FILFIL. All Rights Reserved.</p>
+          <p>© {year} filfil. All Rights Reserved.</p>
           <Link href="/privacy" className="nav-link">
             Privacy Policy
           </Link>

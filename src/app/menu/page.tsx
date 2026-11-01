@@ -7,7 +7,7 @@ import { PageIntro } from "@/components/ui/PageIntro";
 export const metadata: Metadata = {
   title: "Menu",
   description:
-    "Explore the FILFIL menu: shawarma sandwiches, meals, signature snack boxes, sides, and drinks in Sweifieh Village, Amman.",
+    "Explore the filfil menu: shawarma sandwiches, meals, signature snack boxes, sides, and drinks in Sweifieh Village, Amman.",
 };
 
 export default function MenuPage() {

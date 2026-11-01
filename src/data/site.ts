@@ -1,6 +1,6 @@
 export const site = {
-  name: "FILFIL",
-  legalName: "FILFIL",
+  name: "filfil",
+  legalName: "filfil",
   slogan: "NEXT LEVEL FOOD.",
   tagline: "Levantine Roots. Mediterranean Inspiration.",
   messages: {
@@ -8,9 +8,9 @@ export const site = {
     feeling: "COME FOR THE FOOD. STAY FOR THE FEELING.",
   },
   description:
-    "FILFIL is a contemporary Mediterranean restaurant in Sweifieh Village, Amman. Levantine roots, Mediterranean inspiration, and next level food.",
+    "filfil is a contemporary Mediterranean restaurant in Sweifieh Village, Amman. Levantine roots, Mediterranean inspiration, and next level food.",
   location: {
-    name: "FILFIL",
+    name: "filfil",
     area: "Sweifieh Village",
     city: "Amman",
     country: "Jordan",
@@ -33,6 +33,12 @@ export const site = {
   },
   get tiktok() {
     return process.env.NEXT_PUBLIC_TIKTOK_URL || "https://www.tiktok.com/@filfiljo";
+  },
+  get spotify() {
+    return process.env.NEXT_PUBLIC_SPOTIFY_URL || "https://open.spotify.com/search/filfiljo";
+  },
+  get loyaltyUrl() {
+    return process.env.NEXT_PUBLIC_LOYALTY_URL || this.instagram;
   },
   get mapsUrl() {
     const { lat, lng } = this.location;

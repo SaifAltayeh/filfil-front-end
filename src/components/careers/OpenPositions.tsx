@@ -102,7 +102,7 @@ export function OpenPositions() {
     return (
       <p className="max-w-xl text-lg leading-relaxed">
         There are no listed vacancies right now. That doesn&apos;t mean we aren&apos;t
-        looking — check back as FILFIL grows.
+        looking — check back as filfil grows.
       </p>
     );
   }

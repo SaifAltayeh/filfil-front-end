@@ -10,16 +10,16 @@ import { media } from "@/lib/assets";
 export const metadata: Metadata = {
   title: "Catering",
   description:
-    "Bring FILFIL to the table. Catering for team lunches, office gatherings, celebrations, and special occasions in Amman.",
+    "Bring filfil to the table. Catering for team lunches, office gatherings, celebrations, and special occasions in Amman.",
 };
 
 export default function CateringPage() {
   return (
     <main>
-      <PageIntro title="Good food. Great gatherings." kicker="Bring FILFIL to the Table.">
+      <PageIntro title="Good food. Great gatherings." kicker="Bring filfil to the Table.">
         <p>
           From team lunches and office gatherings to celebrations and special
-          occasions, FILFIL brings bold Mediterranean flavours to every gathering.
+          occasions, filfil brings bold Mediterranean flavours to every gathering.
         </p>
         <p className="mt-4">
           Our catering selection features freshly prepared favourites, delicious

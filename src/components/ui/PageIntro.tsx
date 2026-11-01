@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
@@ -11,10 +12,10 @@ export function PageIntro({
   className,
 }: {
   eyebrow?: string;
-  title: string;
+  title: ReactNode;
   kicker?: string;
-  aside?: React.ReactNode;
-  children?: React.ReactNode;
+  aside?: ReactNode;
+  children?: ReactNode;
   className?: string;
 }) {
   return (

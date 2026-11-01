@@ -4,21 +4,22 @@ import { FranchiseForm } from "@/components/forms/FranchiseForm";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ImageReveal, Reveal } from "@/components/ui/Reveal";
+import { Brand } from "@/components/ui/Brand";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { media } from "@/lib/assets";
 
 export const metadata: Metadata = {
   title: "Franchise",
   description:
-    "Explore franchise opportunities with FILFIL. A contemporary Mediterranean restaurant brand rooted in Levantine flavours.",
+    "Explore franchise opportunities with filfil. A contemporary Mediterranean restaurant brand rooted in Levantine flavours.",
 };
 
 export default function FranchisePage() {
   return (
     <main>
-      <PageIntro title="Grow with FILFIL." kicker="Let's Take FILFIL Further.">
+      <PageIntro title={<>Grow with <Brand />.</>} kicker="Let's Take filfil Further.">
         <p>
-          FILFIL is a fresh approach to modern Mediterranean dining, built around
+          filfil is a fresh approach to modern Mediterranean dining, built around
           true ingredients, bold flavours, distinctive design, and memorable
           experiences.
         </p>
@@ -37,10 +38,10 @@ export default function FranchisePage() {
           <div className="grid items-center gap-12 lg:grid-cols-12">
             <Reveal className="lg:col-span-6">
               <h2 className="headline text-[clamp(2rem,5vw,4.5rem)]">
-                The right partnerships can take FILFIL to exciting new places.
+                The right partnerships can take <Brand /> to exciting new places.
               </h2>
               <p className="mt-8 max-w-md text-lg leading-relaxed text-beige/75">
-                Interested in exploring opportunities with FILFIL? Let&apos;s start a
+                Interested in exploring opportunities with filfil? Let&apos;s start a
                 conversation.
               </p>
             </Reveal>

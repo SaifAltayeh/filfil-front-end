@@ -31,6 +31,23 @@ function TikTokIcon() {
   );
 }
 
+function SpotifyIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-full w-full" aria-hidden>
+      <path
+        fill="currentColor"
+        d="M12 1.6C6.27 1.6 1.6 6.27 1.6 12S6.27 22.4 12 22.4 22.4 17.73 22.4 12 17.73 1.6 12 1.6Zm4.59 15.05a.72.72 0 0 1-.99.24c-2.71-1.66-6.12-2.03-10.14-1.11a.72.72 0 1 1-.32-1.4c4.38-1 8.16-.58 11.21 1.28a.72.72 0 0 1 .24.99Zm1.23-2.74a.9.9 0 0 1-1.24.3c-3.1-1.9-7.83-2.46-11.5-1.34a.9.9 0 1 1-.52-1.73c4.14-1.24 9.32-.62 12.86 1.55a.9.9 0 0 1 .4 1.22Zm.1-2.85C14.68 8.95 9.34 8.76 6.2 9.7a1.08 1.08 0 1 1-.65-2.06c3.6-1.14 9.57-.92 13.33 1.31a1.08 1.08 0 1 1-1.16 1.81Z"
+      />
+    </svg>
+  );
+}
+
+const socials = [
+  { href: () => site.instagram, label: "filfil on Instagram", icon: InstagramIcon },
+  { href: () => site.tiktok, label: "filfil on TikTok", icon: TikTokIcon },
+  { href: () => site.spotify, label: "filfil on Spotify", icon: SpotifyIcon },
+] as const;
+
 export function SocialLinks({
   className,
   iconClassName,
@@ -40,30 +57,26 @@ export function SocialLinks({
 }) {
   return (
     <div className={cn("flex items-center gap-5", className)}>
-      <a
-        href={site.instagram}
-        className={cn(
-          "flex h-7 w-7 items-center justify-center text-current transition-opacity hover:opacity-60",
-          iconClassName,
-        )}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="FILFIL on Instagram"
-      >
-        <InstagramIcon />
-      </a>
-      <a
-        href={site.tiktok}
-        className={cn(
-          "flex h-7 w-7 items-center justify-center text-current transition-opacity hover:opacity-60",
-          iconClassName,
-        )}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="FILFIL on TikTok"
-      >
-        <TikTokIcon />
-      </a>
+      {socials.map((item) => {
+        const href = item.href();
+        if (!href) return null;
+        const Icon = item.icon;
+        return (
+          <a
+            key={item.label}
+            href={href}
+            className={cn(
+              "flex h-7 w-7 items-center justify-center text-current transition-opacity hover:opacity-60",
+              iconClassName,
+            )}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={item.label}
+          >
+            <Icon />
+          </a>
+        );
+      })}
     </div>
   );
 }

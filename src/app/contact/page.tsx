@@ -8,7 +8,7 @@ import { site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Say hello to FILFIL in Sweifieh Village, Amman. Questions, ideas, feedback, or just a hello.",
+  description: "Say hello to filfil in Sweifieh Village, Amman. Questions, ideas, feedback, or just a hello.",
 };
 
 function ContactDetails() {
@@ -32,6 +32,11 @@ function ContactDetails() {
         {site.tiktok ? (
           <a href={site.tiktok} className="nav-link w-fit" target="_blank" rel="noreferrer">
             TikTok
+          </a>
+        ) : null}
+        {site.spotify ? (
+          <a href={site.spotify} className="nav-link w-fit" target="_blank" rel="noreferrer">
+            Spotify
           </a>
         ) : null}
       </div>
@@ -76,11 +81,11 @@ export default function ContactPage() {
                 href={site.mapsUrl}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Open FILFIL on Google Maps"
+                aria-label="Open filfil on Google Maps"
                 className="relative block aspect-[4/5] overflow-hidden bg-black/5 lg:h-full lg:min-h-[36rem] lg:aspect-auto"
               >
                 <iframe
-                  title="FILFIL location map"
+                  title="filfil location map"
                   src={site.mapsEmbedUrl}
                   className="pointer-events-none h-full w-full border-0"
                   loading="lazy"

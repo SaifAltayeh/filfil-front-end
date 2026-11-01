@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { philosophyPillars } from "@/data/philosophy";
+import { philosophyParagraphs, philosophyPillars } from "@/data/philosophy";
 import { cn } from "@/lib/cn";
 
 export function PhilosophyCarousel() {
@@ -69,7 +69,7 @@ export function PhilosophyCarousel() {
           data-slide
           onClick={() => goTo(index)}
           className={cn(
-            "w-[min(78vw,22rem)] shrink-0 snap-start border-t border-black/10 pt-8 transition-opacity duration-300",
+            "w-[min(82vw,26rem)] shrink-0 snap-start border-t border-black/10 pt-8 transition-opacity duration-300",
             index === active ? "opacity-100" : "opacity-30",
           )}
         >
@@ -77,7 +77,11 @@ export function PhilosophyCarousel() {
           <h3 className="font-display text-[clamp(1.5rem,2.2vw,2rem)] leading-[0.95] tracking-[-0.03em]">
             {pillar.title}.
           </h3>
-          <p className="mt-4 text-[15px] leading-relaxed text-black/70">{pillar.body}</p>
+          <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-black/70">
+            {philosophyParagraphs(pillar.body).map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
         </article>
       ))}
     </div>

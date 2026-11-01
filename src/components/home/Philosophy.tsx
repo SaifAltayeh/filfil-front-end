@@ -9,6 +9,7 @@ import {
   useTransform,
   type MotionValue,
 } from "motion/react";
+import { Brand } from "@/components/ui/Brand";
 import { ButtonLink } from "@/components/ui/Button";
 import { philosophyBrief } from "@/data/philosophy";
 import { media } from "@/lib/assets";
@@ -81,7 +82,7 @@ export function Philosophy() {
               ))}
             </div>
             <ButtonLink href="/about" variant="outline" tone="light" className="self-start md:self-auto">
-              About FILFIL
+              About <Brand />
             </ButtonLink>
           </div>
         </div>
@@ -140,7 +141,7 @@ export function Philosophy() {
                 ))}
               </div>
               <ButtonLink href="/about" variant="outline" tone="light" className="self-start md:self-auto">
-                About FILFIL
+                About <Brand />
               </ButtonLink>
             </div>
           </motion.div>

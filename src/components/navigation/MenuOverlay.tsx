@@ -101,7 +101,7 @@ export function MenuOverlay({
                 },
               }}
             >
-              {mainNav.map((item, index) => (
+              {mainNav.map((item) => (
                 <motion.li
                   key={item.href}
                   variants={{
@@ -116,11 +116,8 @@ export function MenuOverlay({
                   <Link
                     href={item.href}
                     onClick={onClose}
-                    className="headline group flex min-w-0 items-baseline gap-3 py-1 text-[clamp(1.7rem,5vw,4.2rem)] leading-[0.92] text-beige md:gap-4"
+                    className="headline group block min-w-0 py-1 text-[clamp(1.7rem,5vw,4.2rem)] leading-[0.92] text-beige"
                   >
-                    <span className="eyebrow hidden shrink-0 pt-1 text-beige/50 sm:inline">
-                      0{index + 1}
-                    </span>
                     <span className="min-w-0 transition-opacity duration-300 group-hover:opacity-60">
                       {item.label}
                     </span>

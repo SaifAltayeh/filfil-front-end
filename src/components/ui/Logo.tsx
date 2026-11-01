@@ -15,7 +15,7 @@ export function Logo({
   priority?: boolean;
 }) {
   return (
-    <Link href="/" aria-label="FILFIL home" className={cn("inline-flex items-center", className)}>
+    <Link href="/" aria-label="filfil home" className={cn("inline-flex items-center", className)}>
       <Image
         src={variant === "light" ? logos.light : logos.dark}
         alt="filfil."
