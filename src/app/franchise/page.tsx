@@ -21,8 +21,16 @@ export default async function FranchisePage() {
 
   return (
     <main>
-      <PageIntro title={<>{t.franchise.title} <Brand />.</>} kicker={t.franchise.noExperienceTitle}>
-        <p>{t.franchise.noExperienceBody}</p>
+      <PageIntro title={<>{t.franchise.title} <Brand />.</>} kicker={t.franchise.kicker}>
+        {t.franchise.intro.map((paragraph, index) => (
+          <p key={paragraph} className={index === 0 ? undefined : "mt-4"}>
+            {paragraph}
+          </p>
+        ))}
+        <h2 className="font-display mt-10 text-lg font-bold tracking-[-0.03em] text-black md:text-xl">
+          {t.franchise.noExperienceTitle}
+        </h2>
+        <p className="mt-4">{t.franchise.noExperienceBody}</p>
         <p className="font-display mt-6 text-lg tracking-[-0.03em] text-black md:text-xl">
           {t.franchise.closing}
         </p>

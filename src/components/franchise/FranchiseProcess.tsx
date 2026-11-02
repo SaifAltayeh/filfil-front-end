@@ -54,28 +54,23 @@ function StepCard({
     >
       <motion.article
         style={reduce ? undefined : { scale, opacity: fade }}
-        className="flex h-[min(58vh,460px)] w-[min(90vw,500px)] flex-col justify-between rounded-[18px] border border-black/10 bg-[#efe6d8] px-8 py-9 shadow-[0_24px_50px_rgba(0,0,0,0.12)] md:px-10 md:py-10"
+        className="flex h-[min(58vh,500px)] w-[min(92vw,680px)] flex-col justify-between rounded-[18px] border border-black/10 bg-[#efe6d8] px-8 py-9 shadow-[0_24px_50px_rgba(0,0,0,0.12)] md:px-12 md:py-10"
       >
         <div>
           <h3
             className={
               arabic
-                ? "max-w-[14ch] text-[clamp(30px,4vw,46px)] font-extrabold leading-[1.15]"
-                : "headline max-w-[11ch] text-[clamp(34px,4.2vw,52px)]"
+                ? "max-w-[18ch] text-[clamp(30px,4vw,46px)] font-extrabold leading-[1.15]"
+                : "headline max-w-[16ch] text-[clamp(34px,4.2vw,52px)]"
             }
           >
             {step.title}
           </h3>
-          <p className="mt-8 max-w-[32ch] text-[15px] leading-7 text-black/70">{step.body}</p>
+          <p className="mt-8 max-w-none text-[16px] leading-7 text-black/70 md:text-[17px] md:leading-8">
+            {step.body}
+          </p>
         </div>
-        <div className="flex items-end justify-between gap-6">
-          <ul className="space-y-1 text-[15px] font-medium leading-6">
-            {step.points.map((point) => (
-              <li key={point}>{point}</li>
-            ))}
-          </ul>
-          <p className="headline text-[64px] leading-none md:text-[72px]">{number}</p>
-        </div>
+        <p className="headline self-end text-[64px] leading-none md:text-[72px]">{number}</p>
       </motion.article>
     </li>
   );
@@ -99,7 +94,7 @@ export function FranchiseProcess({
     return (
       <div className="mx-auto mt-20 w-full max-w-[1600px] px-5 md:px-10 lg:px-16">
         <h3 className="headline text-[clamp(2rem,5vw,3.4rem)]">{heading}</h3>
-        <ol className="mx-auto mt-10 w-full max-w-[500px] space-y-4">
+        <ol className="mx-auto mt-10 w-full max-w-[680px] space-y-4">
           {steps.map((step, index) => (
             <li
               key={step.title}
@@ -116,13 +111,8 @@ export function FranchiseProcess({
                 >
                   {step.title}
                 </h4>
-                <p className="mt-4 text-[15px] leading-7 text-black/70">{step.body}</p>
+                <p className="mt-4 text-[16px] leading-7 text-black/70">{step.body}</p>
               </div>
-              <ul className="mt-6 space-y-1 text-[15px] font-medium">
-                {step.points.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
             </li>
           ))}
         </ol>
