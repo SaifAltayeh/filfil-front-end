@@ -11,10 +11,9 @@ import {
 } from "motion/react";
 import { Brand } from "@/components/ui/Brand";
 import { ButtonLink } from "@/components/ui/Button";
-import { philosophyBrief } from "@/data/philosophy";
+import { useI18n } from "@/i18n/provider";
 import { media } from "@/lib/assets";
 
-const WORDS = philosophyBrief.quote.split(/\s+/);
 const IMAGE = media.tableGreenWall;
 const quoteClass =
   "mx-auto max-w-3xl text-center font-sans text-[clamp(1.6rem,3.1vw,2.5rem)] leading-[1.2] tracking-[-0.01em] text-balance";
@@ -22,26 +21,30 @@ const quoteClass =
 function BriefWord({
   word,
   index,
+  total,
   progress,
 }: {
   word: string;
   index: number;
+  total: number;
   progress: MotionValue<number>;
 }) {
-  const start = (index / WORDS.length) * 0.38;
-  const end = ((index + 1) / WORDS.length) * 0.38;
+  const start = (index / total) * 0.38;
+  const end = ((index + 1) / total) * 0.38;
   const opacity = useTransform(progress, [start, end], [0.14, 1]);
-  const label = index === 0 ? `“${word}` : index === WORDS.length - 1 ? `${word}”` : word;
+  const label = index === 0 ? `“${word}` : index === total - 1 ? `${word}”` : word;
 
   return (
     <motion.span className="inline-block" style={{ opacity }}>
       {label}
-      {index < WORDS.length - 1 ? "\u00a0" : null}
+      {index < total - 1 ? "\u00a0" : null}
     </motion.span>
   );
 }
 
 export function Philosophy() {
+  const { t } = useI18n();
+  const WORDS = t.philosophy.quote.split(/\s+/);
   const reduced = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -61,7 +64,7 @@ export function Philosophy() {
     return (
       <section id="philosophy" aria-label="Our philosophy" className="bg-beige">
         <div className="mx-auto max-w-[1440px] px-5 pt-28 pb-10 sm:px-6 sm:pt-32">
-          <p className={quoteClass}>“{philosophyBrief.quote}”</p>
+          <p className={quoteClass}>“{t.philosophy.quote}”</p>
         </div>
         <div className="relative mx-3 aspect-[16/10] overflow-hidden rounded-2xl bg-black/5 sm:mx-4">
           <Image
@@ -77,12 +80,12 @@ export function Philosophy() {
           />
           <div className="absolute inset-x-0 bottom-0 flex max-h-[75%] flex-col gap-4 overflow-y-auto p-5 text-white sm:gap-8 sm:p-10 md:max-h-none md:flex-row md:items-end md:justify-between">
             <div className="max-w-xl space-y-3 text-sm leading-relaxed sm:space-y-4 sm:text-base md:text-lg">
-              {philosophyBrief.overlay.map((paragraph) => (
+              {t.philosophy.overlay.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
             <ButtonLink href="/about" variant="outline" tone="light" className="self-start md:self-auto">
-              About <Brand />
+              {t.home.aboutCta} <Brand />
             </ButtonLink>
           </div>
         </div>
@@ -102,10 +105,10 @@ export function Philosophy() {
           className="mx-auto max-w-[1440px] px-4 pt-28 sm:px-6 sm:pt-32"
           style={{ opacity: quoteOpacity }}
         >
-          <p className="sr-only">“{philosophyBrief.quote}”</p>
+          <p className="sr-only">“{t.philosophy.quote}”</p>
           <p aria-hidden className={quoteClass}>
             {WORDS.map((word, index) => (
-              <BriefWord key={`${word}-${index}`} word={word} index={index} progress={scrollYProgress} />
+              <BriefWord key={`${word}-${index}`} word={word} index={index} total={WORDS.length} progress={scrollYProgress} />
             ))}
           </p>
         </motion.div>
@@ -136,12 +139,12 @@ export function Philosophy() {
           >
             <div className="flex max-h-[75%] flex-col gap-4 overflow-y-auto md:max-h-none md:flex-row md:items-end md:justify-between md:gap-8">
               <div className="max-w-xl space-y-3 text-sm leading-relaxed sm:space-y-4 sm:text-base md:text-lg">
-                {philosophyBrief.overlay.map((paragraph) => (
+                {t.philosophy.overlay.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
               <ButtonLink href="/about" variant="outline" tone="light" className="self-start md:self-auto">
-                About <Brand />
+                {t.home.aboutCta} <Brand />
               </ButtonLink>
             </div>
           </motion.div>

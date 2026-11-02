@@ -5,6 +5,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ImageReveal, Reveal } from "@/components/ui/Reveal";
 import { PageIntro } from "@/components/ui/PageIntro";
+import { getMessages } from "@/i18n/get-messages";
 import { media } from "@/lib/assets";
 
 export const metadata: Metadata = {
@@ -13,21 +14,19 @@ export const metadata: Metadata = {
     "Bring filfil to the table. Catering for team lunches, office gatherings, celebrations, and special occasions in Amman.",
 };
 
-export default function CateringPage() {
+export default async function CateringPage() {
+  const t = await getMessages();
+
   return (
     <main>
-      <PageIntro title="Good food. Great gatherings." kicker="Bring filfil to the Table.">
-        <p>
-          From team lunches and office gatherings to celebrations and special
-          occasions, filfil brings bold Mediterranean flavours to every gathering.
-        </p>
-        <p className="mt-4">
-          Our catering selection features freshly prepared favourites, delicious
-          bites, and food made for sharing.
-        </p>
-        <p className="mt-4">Because good company deserves great food.</p>
+      <PageIntro title={t.catering.title} kicker={t.catering.kicker}>
+        {t.catering.intro.map((paragraph, index) => (
+          <p key={paragraph} className={index === 0 ? undefined : "mt-4"}>
+            {paragraph}
+          </p>
+        ))}
         <div className="mt-8">
-          <ButtonLink href="#enquire">Enquire About Catering</ButtonLink>
+          <ButtonLink href="#enquire">{t.catering.enquire}</ButtonLink>
         </div>
       </PageIntro>
 
@@ -64,7 +63,7 @@ export default function CateringPage() {
             </Reveal>
             <div id="enquire" className="scroll-mt-32 lg:col-span-6 lg:col-start-7">
               <Reveal>
-                <h2 className="headline mb-10 text-4xl md:text-5xl">Enquire.</h2>
+                <h2 className="headline mb-10 text-4xl md:text-5xl">{t.catering.formTitle}</h2>
                 <CateringForm />
               </Reveal>
             </div>

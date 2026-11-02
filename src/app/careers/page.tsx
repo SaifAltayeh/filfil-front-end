@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { ImageReveal, Reveal } from "@/components/ui/Reveal";
 import { Brand } from "@/components/ui/Brand";
 import { PageIntro } from "@/components/ui/PageIntro";
+import { getMessages } from "@/i18n/get-messages";
 import { media } from "@/lib/assets";
 
 export const metadata: Metadata = {
@@ -15,28 +16,19 @@ export const metadata: Metadata = {
     "Join the filfil crew in Amman. Explore open positions and apply directly from the listing.",
 };
 
-export default function CareersPage() {
+export default async function CareersPage() {
+  const t = await getMessages();
+
   return (
     <main>
-      <PageIntro title={<>Join the <Brand /> crew.</>} kicker="Good People Make Great Things Happen.">
-        <p>At filfil, great food starts with great people.</p>
-        <p className="mt-4">
-          We&apos;re building a team of passionate, creative, and ambitious individuals
-          who believe in good food, genuine hospitality, and doing things a little
-          differently.
-        </p>
-        <p className="mt-4">
-          From our kitchen to our guest experience, every person plays a part in
-          making filfil what it is.
-        </p>
-        <p className="mt-4">
-          We value teamwork, positive energy, fresh ideas, and people who take
-          pride in what they do. We&apos;re growing, evolving, and always looking
-          for great people to grow with us.
-        </p>
-        <p className="mt-4">Think you&apos;d be a great fit? We&apos;d love to hear from you.</p>
+      <PageIntro title={<>{t.careers.title} <Brand />{t.careers.titleEnd}</>} kicker={t.careers.kicker}>
+        {t.careers.intro.map((paragraph, index) => (
+          <p key={paragraph} className={index === 0 ? undefined : "mt-4"}>
+            {paragraph}
+          </p>
+        ))}
         <div className="mt-8">
-          <ButtonLink href="#positions">View Open Positions</ButtonLink>
+          <ButtonLink href="#positions">{t.careers.viewPositions}</ButtonLink>
         </div>
       </PageIntro>
 
@@ -57,7 +49,7 @@ export default function CareersPage() {
       <section id="positions" className="scroll-mt-28 bg-beige py-24">
         <Container>
           <Reveal>
-            <h2 className="headline mb-10 text-4xl md:text-6xl">Open positions.</h2>
+            <h2 className="headline mb-10 text-4xl md:text-6xl">{t.careers.openTitle}</h2>
           </Reveal>
           <OpenPositions />
         </Container>
@@ -67,10 +59,9 @@ export default function CareersPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-12">
             <Reveal className="lg:col-span-4">
-              <h2 className="headline text-4xl md:text-5xl">General positions.</h2>
+              <h2 className="headline text-4xl md:text-5xl">{t.careers.generalTitle}</h2>
               <p className="mt-6 max-w-sm text-lg leading-relaxed">
-                No listing that fits? Send a general application and we&apos;ll keep you
-                in mind as filfil grows.
+                {t.careers.generalBody}
               </p>
             </Reveal>
             <div className="lg:col-span-7 lg:col-start-6">

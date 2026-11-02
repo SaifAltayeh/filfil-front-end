@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { mainNav } from "@/data/navigation";
 import { Logo } from "@/components/ui/Logo";
 import { SocialLinks } from "@/components/ui/SocialIcons";
+import { useI18n } from "@/i18n/provider";
 import { easeOutExpo } from "@/lib/motion";
 
 export function MenuOverlay({
@@ -17,6 +18,7 @@ export function MenuOverlay({
 }) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const reduced = useReducedMotion();
+  const { t } = useI18n();
 
   useEffect(() => {
     if (!open) return;
@@ -78,9 +80,9 @@ export function MenuOverlay({
               type="button"
               onClick={onClose}
               className="eyebrow flex items-center gap-3 py-2"
-              aria-label="Close menu"
+              aria-label={t.common.close}
             >
-              Close
+              {t.common.close}
               <span aria-hidden className="relative block h-4 w-5">
                 <span className="absolute top-1/2 left-0 h-px w-full -translate-y-1/2 rotate-45 bg-beige" />
                 <span className="absolute top-1/2 left-0 h-px w-full -translate-y-1/2 -rotate-45 bg-beige" />
@@ -119,7 +121,7 @@ export function MenuOverlay({
                     className="headline group block min-w-0 py-1 text-[clamp(1.7rem,5vw,4.2rem)] leading-[0.92] text-beige"
                   >
                     <span className="min-w-0 transition-opacity duration-300 group-hover:opacity-60">
-                      {item.label}
+                      {t.nav[item.href as keyof typeof t.nav]}
                     </span>
                   </Link>
                 </motion.li>
@@ -127,7 +129,7 @@ export function MenuOverlay({
             </motion.ul>
           </nav>
 
-          <div className="absolute right-5 bottom-8 z-10 flex items-center md:right-10 md:bottom-10 lg:right-16">
+          <div className="absolute end-5 bottom-8 z-10 flex items-center md:end-10 md:bottom-10 lg:end-16">
             <SocialLinks />
           </div>
         </motion.div>

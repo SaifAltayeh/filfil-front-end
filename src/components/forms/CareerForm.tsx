@@ -7,6 +7,7 @@ import { jobs, generalPositionLabel } from "@/data/careers";
 import { submitCareer } from "@/lib/actions";
 import { careerSchema, type CareerInput } from "@/lib/validation";
 import { Button, buttonClassName } from "@/components/ui/Button";
+import { useI18n } from "@/i18n/provider";
 import { Field, FormStatus, Select, TextArea, TextInput } from "./Field";
 
 export function CareerForm({
@@ -18,6 +19,7 @@ export function CareerForm({
   lockedPosition?: boolean;
   positionAsText?: boolean;
 }) {
+  const { t } = useI18n();
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [cvError, setCvError] = useState<string | null>(null);
@@ -54,23 +56,23 @@ export function CareerForm({
 
   return (
     <form onSubmit={onSubmit} className="space-y-8" noValidate>
-      <Field label="Full Name" htmlFor="name" error={errors.name?.message}>
+      <Field label={t.forms.fullName} htmlFor="name" error={errors.name?.message}>
         <TextInput id="name" autoComplete="name" {...register("name")} />
       </Field>
-      <Field label="Email Address" htmlFor="email" error={errors.email?.message}>
+      <Field label={t.forms.email} htmlFor="email" error={errors.email?.message}>
         <TextInput id="email" type="email" autoComplete="email" {...register("email")} />
       </Field>
-      <Field label="Phone Number" htmlFor="phone" error={errors.phone?.message}>
+      <Field label={t.forms.phone} htmlFor="phone" error={errors.phone?.message}>
         <TextInput id="phone" type="tel" autoComplete="tel" {...register("phone")} />
       </Field>
       {positionAsText ? (
-        <Field label="Position of Interest" htmlFor="position" error={errors.position?.message}>
-          <TextInput id="position" placeholder="Kitchen Crew, Front of House…" {...register("position")} />
+        <Field label={t.forms.position} htmlFor="position" error={errors.position?.message}>
+          <TextInput id="position" placeholder={t.forms.positionPlaceholder} {...register("position")} />
         </Field>
       ) : lockedPosition ? (
         <input type="hidden" {...register("position")} />
       ) : (
-        <Field label="Position of Interest" htmlFor="position" error={errors.position?.message}>
+        <Field label={t.forms.position} htmlFor="position" error={errors.position?.message}>
           <Select id="position" {...register("position")}>
             {positions.map((position) => (
               <option key={position} value={position}>
@@ -80,10 +82,10 @@ export function CareerForm({
           </Select>
         </Field>
       )}
-      <Field label="Years of Experience" htmlFor="experience" error={errors.experience?.message}>
+      <Field label={t.forms.experience} htmlFor="experience" error={errors.experience?.message}>
         <TextInput id="experience" {...register("experience")} />
       </Field>
-      <Field label="CV Upload" error={cvError ?? undefined}>
+      <Field label={t.forms.cv} error={cvError ?? undefined}>
         <input
           id="cv"
           name="cv"
@@ -94,18 +96,18 @@ export function CareerForm({
           onChange={(event) => setCvName(event.target.files?.[0]?.name ?? null)}
         />
         <label htmlFor="cv" className={buttonClassName({ variant: "solid", className: "w-fit cursor-pointer" })}>
-          {cvName ? "Replace File" : "Choose File"}
+          {cvName ? t.forms.cvReplace : t.forms.cvChoose}
         </label>
         <p className="pt-3 text-sm text-black/55">
-          {cvName ? cvName : "PDF, DOC, or DOCX. Maximum 5MB."}
+          {cvName ? cvName : t.forms.cvHint}
         </p>
       </Field>
-      <Field label="Short Introduction" htmlFor="message" error={errors.message?.message}>
+      <Field label={t.forms.message} htmlFor="message" error={errors.message?.message}>
         <TextArea id="message" {...register("message")} />
       </Field>
       <FormStatus error={serverError} />
       <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Sending" : "Submit Application"}
+        {isSubmitting ? t.common.sending : t.forms.submitApplication}
       </Button>
     </form>
   );

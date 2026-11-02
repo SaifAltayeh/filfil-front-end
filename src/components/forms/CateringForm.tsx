@@ -7,6 +7,7 @@ import { submitCatering } from "@/lib/actions";
 import { cateringSchema, type CateringInput } from "@/lib/validation";
 import { Button } from "@/components/ui/Button";
 import { SuccessDialog } from "@/components/ui/SuccessDialog";
+import { useI18n } from "@/i18n/provider";
 import { Field, FormStatus, Select, TextArea, TextInput } from "./Field";
 
 const eventTypes = [
@@ -15,9 +16,10 @@ const eventTypes = [
   "Celebration",
   "Special Occasion",
   "Other",
-];
+] as const;
 
 export function CateringForm() {
+  const { t } = useI18n();
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const {
@@ -42,51 +44,51 @@ export function CateringForm() {
   return (
     <>
       <form onSubmit={onSubmit} className="space-y-8" noValidate>
-      <Field label="Full Name" htmlFor="name" error={errors.name?.message}>
+      <Field label={t.forms.fullName} htmlFor="name" error={errors.name?.message}>
         <TextInput id="name" autoComplete="name" {...register("name")} />
       </Field>
-      <Field label="Company Name" htmlFor="company" optional error={errors.company?.message}>
+      <Field label={t.forms.company} htmlFor="company" optional error={errors.company?.message}>
         <TextInput id="company" autoComplete="organization" {...register("company")} />
       </Field>
-      <Field label="Email Address" htmlFor="email" error={errors.email?.message}>
+      <Field label={t.forms.email} htmlFor="email" error={errors.email?.message}>
         <TextInput id="email" type="email" autoComplete="email" {...register("email")} />
       </Field>
-      <Field label="Phone Number" htmlFor="phone" error={errors.phone?.message}>
+      <Field label={t.forms.phone} htmlFor="phone" error={errors.phone?.message}>
         <TextInput id="phone" type="tel" autoComplete="tel" {...register("phone")} />
       </Field>
-      <Field label="Type of Event" htmlFor="eventType" error={errors.eventType?.message}>
+      <Field label={t.forms.eventType} htmlFor="eventType" error={errors.eventType?.message}>
         <Select id="eventType" defaultValue="" {...register("eventType")}>
           <option value="" disabled>
-            Select an event type
+            {t.forms.selectEvent}
           </option>
           {eventTypes.map((type) => (
             <option key={type} value={type}>
-              {type}
+              {t.forms.events[type]}
             </option>
           ))}
         </Select>
       </Field>
-      <Field label="Event Date" htmlFor="eventDate" error={errors.eventDate?.message}>
+      <Field label={t.forms.eventDate} htmlFor="eventDate" error={errors.eventDate?.message}>
         <TextInput id="eventDate" type="date" {...register("eventDate")} />
       </Field>
-      <Field label="Number of Guests" htmlFor="guests" error={errors.guests?.message}>
+      <Field label={t.forms.guests} htmlFor="guests" error={errors.guests?.message}>
         <TextInput id="guests" inputMode="numeric" {...register("guests")} />
       </Field>
-      <Field label="Location" htmlFor="location" error={errors.location?.message}>
+      <Field label={t.forms.location} htmlFor="location" error={errors.location?.message}>
         <TextInput id="location" {...register("location")} />
       </Field>
-      <Field label="Additional Details" htmlFor="details" optional error={errors.details?.message}>
+      <Field label={t.forms.details} htmlFor="details" optional error={errors.details?.message}>
         <TextArea id="details" {...register("details")} />
       </Field>
       <FormStatus error={serverError} />
       <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Sending" : "Submit Enquiry"}
+        {isSubmitting ? t.common.sending : t.common.submitEnquiry}
       </Button>
     </form>
     <SuccessDialog
       open={success}
-      title="Form submitted."
-      message="Your form has been submitted. We'll follow up with availability and a tailored selection."
+      title={t.common.formSubmittedTitle}
+      message={t.common.formSubmittedCatering}
       onClose={() => {
         setSuccess(false);
         reset();

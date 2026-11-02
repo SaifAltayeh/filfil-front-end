@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Button } from "@/components/ui/Button";
+import { useI18n } from "@/i18n/provider";
 import { easeOutExpo } from "@/lib/motion";
 
 export function SuccessDialog({
@@ -18,6 +19,7 @@ export function SuccessDialog({
 }) {
   const panelRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
+  const { t } = useI18n();
 
   useEffect(() => {
     if (!open) return;
@@ -64,7 +66,7 @@ export function SuccessDialog({
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-black/75">{message}</p>
             <div className="mt-8">
-              <Button onClick={onClose}>Close</Button>
+              <Button onClick={onClose}>{t.common.close}</Button>
             </div>
           </motion.div>
         </motion.div>

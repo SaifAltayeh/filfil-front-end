@@ -3,9 +3,11 @@ import { mainNav } from "@/data/navigation";
 import { site } from "@/data/site";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
+import { getMessages } from "@/i18n/get-messages";
 
-export function Footer() {
+export async function Footer() {
   const year = new Date().getFullYear();
+  const t = await getMessages();
 
   return (
     <footer className="bg-black text-beige">
@@ -13,17 +15,17 @@ export function Footer() {
         <div className="grid gap-12 border-b border-beige/15 pb-16 md:grid-cols-12">
           <div className="md:col-span-5">
             <Logo variant="light" imageClassName="h-11 md:h-14" />
-            <p className="headline mt-8 text-4xl md:text-5xl">{site.slogan}</p>
+            <p className="headline mt-8 text-4xl md:text-5xl">{t.site.slogan}</p>
             <p className="mt-6 max-w-sm text-lg leading-snug text-beige/75">
-              {site.tagline}
+              {t.site.tagline}
               <br />
-              {site.messages.ingredients}
+              {t.site.ingredients}
             </p>
           </div>
 
           <div className="md:col-span-3 md:col-start-7">
-            <p className="eyebrow mb-5 text-beige/50">Visit</p>
-            <p className="text-lg leading-snug">{site.location.display}</p>
+            <p className="eyebrow mb-5 text-beige/50">{t.common.visit}</p>
+            <p className="text-lg leading-snug">{t.site.location}</p>
             <div className="mt-6 flex flex-col gap-2">
               <a
                 href={site.instagram}
@@ -31,7 +33,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Instagram
+                {t.common.instagram}
               </a>
               {site.tiktok ? (
                 <a
@@ -40,7 +42,7 @@ export function Footer() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  TikTok
+                  {t.common.tiktok}
                 </a>
               ) : null}
               {site.spotify ? (
@@ -50,19 +52,19 @@ export function Footer() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Spotify
+                  {t.common.spotify}
                 </a>
               ) : null}
             </div>
           </div>
 
-          <nav className="md:col-span-3 md:col-start-10" aria-label="Footer">
-            <p className="eyebrow mb-5 text-beige/50">Explore</p>
+          <nav className="md:col-span-3 md:col-start-10" aria-label={t.common.explore}>
+            <p className="eyebrow mb-5 text-beige/50">{t.common.explore}</p>
             <ul className="grid gap-2 text-lg">
               {mainNav.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="nav-link inline-block py-1">
-                    {item.label}
+                    {t.nav[item.href]}
                   </Link>
                 </li>
               ))}
@@ -71,9 +73,11 @@ export function Footer() {
         </div>
 
         <div className="flex flex-wrap items-end justify-between gap-6 pt-8 text-sm text-beige/55">
-          <p>© {year} filfil. All Rights Reserved.</p>
+          <p>
+            © {year} filfil. {t.common.rights}
+          </p>
           <Link href="/privacy" className="nav-link">
-            Privacy Policy
+            {t.common.privacy}
           </Link>
         </div>
       </Container>

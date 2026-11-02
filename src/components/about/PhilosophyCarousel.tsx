@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { philosophyParagraphs, philosophyPillars } from "@/data/philosophy";
+import { useI18n } from "@/i18n/provider";
 import { cn } from "@/lib/cn";
 
 export function PhilosophyCarousel() {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const { t, locale } = useI18n();
+  const pillars = t.about.pillars;
+  const arabic = locale === "ar";
 
   useEffect(() => {
     const root = scrollerRef.current;
@@ -17,17 +20,21 @@ export function PhilosophyCarousel() {
     const padEnd = () => {
       const slide = slides()[0];
       if (!slide) return;
-      const pl = Number.parseFloat(getComputedStyle(root).paddingLeft);
-      const extra = Math.max(0, root.clientWidth - slide.getBoundingClientRect().width - pl);
-      root.style.paddingRight = `${extra}px`;
+      const padStart = Number.parseFloat(getComputedStyle(root).paddingInlineStart);
+      const extra = Math.max(0, root.clientWidth - slide.getBoundingClientRect().width - padStart);
+      root.style.paddingInlineEnd = `${extra}px`;
     };
 
     const sync = () => {
       const items = slides();
-      const snapX =
-        root.getBoundingClientRect().left +
-        Number.parseFloat(getComputedStyle(root).paddingLeft);
-      const next = items.findIndex((slide) => slide.getBoundingClientRect().right > snapX + 40);
+      const rtl = getComputedStyle(root).direction === "rtl";
+      const rootRect = root.getBoundingClientRect();
+      const padStart = Number.parseFloat(getComputedStyle(root).paddingInlineStart);
+      const startX = rtl ? rootRect.right - padStart : rootRect.left + padStart;
+      const next = items.findIndex((slide) => {
+        const rect = slide.getBoundingClientRect();
+        return rtl ? rect.left < startX - 40 : rect.right > startX + 40;
+      });
       setActive(next === -1 ? Math.max(0, items.length - 1) : next);
     };
 
@@ -49,36 +56,30 @@ export function PhilosophyCarousel() {
   const goTo = (index: number) => {
     const root = scrollerRef.current;
     const slide = root?.querySelectorAll<HTMLElement>("[data-slide]")[index];
-    if (!root || !slide) return;
-    const padding = Number.parseFloat(getComputedStyle(root).paddingLeft);
-    const left =
-      root.scrollLeft +
-      (slide.getBoundingClientRect().left - root.getBoundingClientRect().left) -
-      padding;
-    root.scrollTo({ left, behavior: "smooth" });
+    slide?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
   };
 
   return (
     <div
       ref={scrollerRef}
-      className="-mx-5 flex snap-x snap-mandatory gap-8 overflow-x-auto overscroll-x-contain pt-16 pb-4 pl-5 scroll-ps-5 [scrollbar-width:none] md:-mx-10 md:pl-10 md:scroll-ps-10 lg:-mx-16 lg:pl-16 lg:scroll-ps-16 [&::-webkit-scrollbar]:hidden"
+      className="-mx-5 flex snap-x snap-mandatory gap-10 overflow-x-auto overscroll-x-contain pt-16 pb-4 ps-5 scroll-ps-5 [scrollbar-width:none] md:-mx-10 md:gap-14 md:ps-10 md:scroll-ps-10 lg:-mx-16 lg:ps-16 lg:scroll-ps-16 [&::-webkit-scrollbar]:hidden"
     >
-      {philosophyPillars.map((pillar, index) => (
+      {pillars.map((pillar, index) => (
         <article
-          key={pillar.id}
+          key={pillar.title}
           data-slide
           onClick={() => goTo(index)}
           className={cn(
-            "w-[min(82vw,26rem)] shrink-0 snap-start border-t border-black/10 pt-8 transition-opacity duration-300",
+            "w-[min(86vw,28rem)] shrink-0 snap-start overflow-hidden border-t border-black/10 pt-8 transition-opacity duration-300",
             index === active ? "opacity-100" : "opacity-30",
           )}
         >
-          <p className="eyebrow mb-4">{pillar.number}</p>
-          <h3 className="font-display text-[clamp(1.5rem,2.2vw,2rem)] leading-[0.95] tracking-[-0.03em]">
-            {pillar.title}.
+          <p className="eyebrow mb-4">{String(index + 1).padStart(2, "0")}</p>
+          <h3 className="font-display text-[clamp(1.5rem,2.2vw,2rem)] leading-snug tracking-[-0.03em]">
+            {arabic ? pillar.title : `${pillar.title}.`}
           </h3>
           <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-black/70">
-            {philosophyParagraphs(pillar.body).map((paragraph) => (
+            {pillar.body.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>

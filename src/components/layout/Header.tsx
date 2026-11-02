@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { LanguageSwitch } from "@/components/i18n/LanguageSwitch";
 import { Logo } from "@/components/ui/Logo";
 import { SoundToggle } from "@/components/layout/SoundToggle";
 import { MenuOverlay } from "@/components/navigation/MenuOverlay";
+import { useI18n } from "@/i18n/provider";
 import { cn } from "@/lib/cn";
 
 export function Header() {
@@ -33,6 +35,7 @@ export function Header() {
     return () => observer.disconnect();
   }, [pathname]);
 
+  const { t } = useI18n();
   const overDark = pathname === "/" && (overHero || open);
 
   return (
@@ -48,6 +51,7 @@ export function Header() {
         <div className="flex h-full items-center justify-between px-5 md:px-10 lg:px-16">
           <Logo variant={overDark ? "light" : "dark"} priority />
           <div className="flex items-center gap-5 md:gap-8">
+            <LanguageSwitch />
             <SoundToggle />
             <button
               type="button"
@@ -56,7 +60,7 @@ export function Header() {
               aria-controls="site-menu"
               onClick={() => setOpen(true)}
             >
-              Menu
+              {t.common.menu}
               <span aria-hidden className="flex flex-col gap-1.5">
                 <span className="block h-px w-6 bg-current" />
                 <span className="block h-px w-4 bg-current" />

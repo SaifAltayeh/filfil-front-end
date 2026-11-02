@@ -2,11 +2,13 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { ButtonLink } from "@/components/ui/Button";
+import { useI18n } from "@/i18n/provider";
 import { media, videos } from "@/lib/assets";
 import { easeOutExpo } from "@/lib/motion";
 
 export function Hero() {
   const reduced = useReducedMotion();
+  const { t } = useI18n();
 
   return (
     <section id="hero" className="relative h-svh overflow-hidden bg-black text-beige">
@@ -58,11 +60,11 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.15, ease: easeOutExpo }}
         >
           <h1 className="headline max-w-[12ch] text-[clamp(2.8rem,12vw,10rem)] text-beige">
-            Next
+            {t.home.heroTitle[0]}
             <br />
-            Level
+            {t.home.heroTitle[1]}
             <br />
-            Food.
+            {t.home.heroTitle[2]}
           </h1>
         </motion.div>
 
@@ -73,7 +75,7 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4, ease: easeOutExpo }}
           >
-            Levantine Roots. Mediterranean Inspiration.
+            {t.home.heroTagline}
           </motion.p>
           <motion.div
             initial={reduced ? false : { opacity: 0, y: 12 }}
@@ -81,7 +83,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.55, ease: easeOutExpo }}
           >
             <ButtonLink href="/menu" variant="outline" tone="light">
-              Explore Our Menu
+              {t.home.exploreMenu}
             </ButtonLink>
           </motion.div>
         </div>

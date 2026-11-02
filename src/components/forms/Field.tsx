@@ -1,3 +1,6 @@
+"use client";
+
+import { useI18n } from "@/i18n/provider";
 import { cn } from "@/lib/cn";
 
 export function Field({
@@ -13,11 +16,12 @@ export function Field({
   optional?: boolean;
   children: React.ReactNode;
 }) {
+  const { t } = useI18n();
   return (
     <div className="space-y-2">
       <label htmlFor={htmlFor} className="eyebrow flex items-center justify-between">
         <span>{label}</span>
-        {optional ? <span className="tracking-normal text-black/45">Optional</span> : null}
+        {optional ? <span className="tracking-normal text-black/45">{t.common.optional}</span> : null}
       </label>
       {children}
       {error ? (
@@ -70,10 +74,11 @@ export function FormStatus({
   error?: string | null;
   success?: boolean;
 }) {
+  const { t } = useI18n();
   if (success) {
     return (
       <p role="status" className="text-lg">
-        Thank you. We&apos;ve received your message and will be in touch.
+        {t.common.formReceived}
       </p>
     );
   }

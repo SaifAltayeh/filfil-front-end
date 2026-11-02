@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useI18n } from "@/i18n/provider";
 import {
   isSoundtrackPlaying,
   startSoundtrack,
@@ -10,6 +11,7 @@ import {
 } from "@/lib/soundtrack";
 
 export function SoundToggle() {
+  const { t } = useI18n();
   const [on, setOn] = useState(false);
 
   useEffect(() => {
@@ -31,7 +33,7 @@ export function SoundToggle() {
       type="button"
       onClick={toggleSoundtrack}
       aria-pressed={on}
-      aria-label={on ? "Mute soundtrack" : "Play soundtrack"}
+      aria-label={on ? t.common.mute : t.common.play}
       className="flex h-10 w-10 items-center justify-center"
     >
       <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>

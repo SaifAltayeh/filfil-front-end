@@ -6,9 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { submitContact } from "@/lib/actions";
 import { contactSchema, type ContactInput } from "@/lib/validation";
 import { Button } from "@/components/ui/Button";
+import { useI18n } from "@/i18n/provider";
 import { Field, FormStatus, TextArea, TextInput } from "./Field";
 
 export function ContactForm() {
+  const { t } = useI18n();
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const {
@@ -33,24 +35,24 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-8" noValidate>
-      <Field label="Full Name" htmlFor="name" error={errors.name?.message}>
+      <Field label={t.forms.fullName} htmlFor="name" error={errors.name?.message}>
         <TextInput id="name" autoComplete="name" {...register("name")} />
       </Field>
-      <Field label="Email Address" htmlFor="email" error={errors.email?.message}>
+      <Field label={t.forms.email} htmlFor="email" error={errors.email?.message}>
         <TextInput id="email" type="email" autoComplete="email" {...register("email")} />
       </Field>
-      <Field label="Phone Number" htmlFor="phone" optional error={errors.phone?.message}>
+      <Field label={t.forms.phone} htmlFor="phone" optional error={errors.phone?.message}>
         <TextInput id="phone" type="tel" autoComplete="tel" {...register("phone")} />
       </Field>
-      <Field label="Subject" htmlFor="subject" error={errors.subject?.message}>
+      <Field label={t.forms.subject} htmlFor="subject" error={errors.subject?.message}>
         <TextInput id="subject" {...register("subject")} />
       </Field>
-      <Field label="Message" htmlFor="message" error={errors.message?.message}>
+      <Field label={t.forms.message} htmlFor="message" error={errors.message?.message}>
         <TextArea id="message" {...register("message")} />
       </Field>
       <FormStatus error={serverError} />
       <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Sending" : "Send Message"}
+        {isSubmitting ? t.common.sending : t.common.sendMessage}
       </Button>
     </form>
   );

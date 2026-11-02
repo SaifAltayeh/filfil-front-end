@@ -6,6 +6,7 @@ import { PageIntro } from "@/components/ui/PageIntro";
 import { AboutIntroVideo } from "@/components/about/AboutIntroVideo";
 import { PhilosophyCarousel } from "@/components/about/PhilosophyCarousel";
 import { Brand } from "@/components/ui/Brand";
+import { getMessages } from "@/i18n/get-messages";
 import { media } from "@/lib/assets";
 
 export const metadata: Metadata = {
@@ -14,29 +15,17 @@ export const metadata: Metadata = {
     "filfil is a fresh take on modern Mediterranean food in Amman. Levantine roots, Mediterranean inspiration, and a place people want to come back to.",
 };
 
-const story = [
-  "filfil started with a simple idea: to reimagine the Mediterranean food we love.",
-  "Inspired by the rich flavours of the Levant, we wanted to celebrate our roots while creating something modern, exciting, and a little unexpected.",
-  "Not another traditional restaurant. Not another ordinary shawarma spot. Something different.",
-  "We started with familiar favourites, quality ingredients, and bold flavours, giving each dish our own creative twist.",
-  "What began as a small restaurant in Amman is growing into a bigger vision: a modern Mediterranean dining experience that brings together great food, good people, and a welcoming atmosphere.",
-  "And we're just getting started.",
-];
+export default async function AboutPage() {
+  const t = await getMessages();
 
-export default function AboutPage() {
   return (
     <main>
-      <PageIntro title={<>This is <Brand />.</>} kicker="Rooted in Tradition. Inspired by Everything.">
-        <p>
-          filfil is a fresh take on modern Mediterranean food in Sweifieh Village,
-          Amman. Levantine roots, Mediterranean inspiration, and a place people want
-          to come back to.
-        </p>
-        <p className="mt-4">
-          We take the flavours we grew up loving and give them a contemporary twist
-          — true ingredients, bold flavours, and a feeling that lasts longer than
-          the meal.
-        </p>
+      <PageIntro title={<>{t.about.title} <Brand />.</>} kicker={t.about.kicker}>
+        {t.about.intro.map((paragraph, index) => (
+          <p key={paragraph} className={index === 0 ? undefined : "mt-4"}>
+            {paragraph}
+          </p>
+        ))}
       </PageIntro>
 
       <section className="bg-beige pb-8 md:pb-12">
@@ -51,33 +40,16 @@ export default function AboutPage() {
         <Container>
           <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-5">
-              <p className="eyebrow mb-6">Who we are</p>
+              <p className="eyebrow mb-6">{t.about.who}</p>
               <p className="font-display text-[clamp(1.8rem,3.2vw,2.8rem)] leading-[1.05] tracking-[-0.03em]">
-                A fresh take on modern Mediterranean food.
+                {t.about.whoTitle}
               </p>
             </Reveal>
             <Reveal delay={0.1} className="space-y-5 text-lg leading-relaxed lg:col-span-6 lg:col-start-7">
-              <p>
-                Our roots are Levantine, our inspiration comes from across the
-                Mediterranean, and our creativity knows no boundaries.
-              </p>
-              <p>
-                We take familiar flavours and reimagine them with carefully selected
-                ingredients, thoughtful preparation, and a passion for trying something
-                different.
-              </p>
-              <p>
-                We believe great food should be full of flavour, made with care, and
-                enjoyed without compromise.
-              </p>
-              <p>
-                But filfil is about more than what&apos;s on your plate. It&apos;s about
-                bringing people together. A place to meet friends, enjoy good food and
-                drinks, share conversations, unwind, and simply enjoy being there.
-              </p>
-              <p className="headline pt-4 text-3xl md:text-4xl">
-                Come for the food. Stay for the feeling.
-              </p>
+              {t.about.whoBody.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+              <p className="headline pt-4 text-3xl md:text-4xl">{t.about.feeling}</p>
             </Reveal>
           </div>
         </Container>
@@ -87,13 +59,13 @@ export default function AboutPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-12 lg:items-end">
             <Reveal className="lg:col-span-5">
-              <p className="eyebrow mb-8 text-beige/55">Our Story</p>
+              <p className="eyebrow mb-8 text-beige/55">{t.about.storyEyebrow}</p>
               <h2 className="headline text-[clamp(2.2rem,5vw,4.8rem)]">
-                A fresh take on something familiar.
+                {t.about.storyTitle}
               </h2>
             </Reveal>
             <Reveal delay={0.1} className="space-y-5 text-lg leading-relaxed text-beige/80 lg:col-span-6 lg:col-start-7">
-              {story.map((paragraph) => (
+              {t.about.story.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </Reveal>
@@ -146,21 +118,15 @@ export default function AboutPage() {
         <Container>
           <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-6">
-              <p className="eyebrow mb-8">Food Philosophy</p>
+              <p className="eyebrow mb-8">{t.about.foodEyebrow}</p>
               <h2 className="headline max-w-[16ch] text-[clamp(2.2rem,5.5vw,5.5rem)]">
-                What goes into our food matters.
+                {t.about.foodTitle}
               </h2>
             </Reveal>
             <Reveal delay={0.08} className="space-y-4 text-lg leading-relaxed lg:col-span-5 lg:col-start-8">
-              <p>We believe great food starts with ingredients you can trust.</p>
-              <p>
-                Our philosophy is simple: carefully selected ingredients, thoughtful
-                preparation, and exciting flavours.
-              </p>
-              <p>
-                We take inspiration from Mediterranean food traditions while creating
-                dishes that feel fresh, modern, and full of character.
-              </p>
+              {t.about.foodIntro.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </Reveal>
           </div>
 
@@ -195,11 +161,9 @@ export default function AboutPage() {
         <Container>
           <Reveal>
             <p className="headline text-[clamp(2rem,6vw,5.5rem)]">
-              True ingredients.
+              {t.site.ingredients}
               <br />
-              Bold flavours.
-              <br />
-              That&apos;s the <Brand /> way.
+              {t.about.way} <Brand /> {t.about.wayEnd}
             </p>
           </Reveal>
         </Container>

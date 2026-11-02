@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { FranchiseForm } from "@/components/forms/FranchiseForm";
+import { FranchiseModel } from "@/components/franchise/FranchiseModel";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ImageReveal, Reveal } from "@/components/ui/Reveal";
 import { Brand } from "@/components/ui/Brand";
 import { PageIntro } from "@/components/ui/PageIntro";
+import { getMessages } from "@/i18n/get-messages";
 import { media } from "@/lib/assets";
 
 export const metadata: Metadata = {
@@ -14,22 +16,18 @@ export const metadata: Metadata = {
     "Explore franchise opportunities with filfil. A contemporary Mediterranean restaurant brand rooted in Levantine flavours.",
 };
 
-export default function FranchisePage() {
+export default async function FranchisePage() {
+  const t = await getMessages();
+
   return (
     <main>
-      <PageIntro title={<>Grow with <Brand />.</>} kicker="Let's Take filfil Further.">
-        <p>
-          filfil is a fresh approach to modern Mediterranean dining, built around
-          true ingredients, bold flavours, distinctive design, and memorable
-          experiences.
-        </p>
-        <p className="mt-4">
-          As we continue to grow, we&apos;re interested in connecting with ambitious
-          entrepreneurs and business partners who share our passion for great food,
-          strong brands, and genuine hospitality.
+      <PageIntro title={<>{t.franchise.title} <Brand />.</>} kicker={t.franchise.noExperienceTitle}>
+        <p>{t.franchise.noExperienceBody}</p>
+        <p className="font-display mt-6 text-lg tracking-[-0.03em] text-black md:text-xl">
+          {t.franchise.closing}
         </p>
         <div className="mt-8">
-          <ButtonLink href="#enquire">Franchise Enquiry</ButtonLink>
+          <ButtonLink href="#enquire">{t.franchise.enquireCta}</ButtonLink>
         </div>
       </PageIntro>
 
@@ -38,11 +36,10 @@ export default function FranchisePage() {
           <div className="grid items-center gap-12 lg:grid-cols-12">
             <Reveal className="lg:col-span-6">
               <h2 className="headline text-[clamp(2rem,5vw,4.5rem)]">
-                The right partnerships can take <Brand /> to exciting new places.
+                {t.franchise.partnersTitle} <Brand /> {t.franchise.partnersEnd}
               </h2>
               <p className="mt-8 max-w-md text-lg leading-relaxed text-beige/75">
-                Interested in exploring opportunities with filfil? Let&apos;s start a
-                conversation.
+                {t.franchise.partnersBody}
               </p>
             </Reveal>
             <Reveal className="lg:col-span-5 lg:col-start-8">
@@ -61,11 +58,13 @@ export default function FranchisePage() {
         </Container>
       </section>
 
+      <FranchiseModel />
+
       <section id="enquire" className="scroll-mt-28 bg-beige py-24">
         <Container>
           <div className="grid gap-12 lg:grid-cols-12">
             <Reveal className="lg:col-span-4">
-              <h2 className="headline text-4xl md:text-5xl">Start a conversation.</h2>
+              <h2 className="headline text-4xl md:text-5xl">{t.franchise.formTitle}</h2>
             </Reveal>
             <div className="lg:col-span-7 lg:col-start-6">
               <FranchiseForm />

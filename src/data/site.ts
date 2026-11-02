@@ -38,7 +38,7 @@ export const site = {
     return process.env.NEXT_PUBLIC_SPOTIFY_URL || "https://open.spotify.com/search/filfiljo";
   },
   get loyaltyUrl() {
-    return process.env.NEXT_PUBLIC_LOYALTY_URL || this.instagram;
+    return process.env.NEXT_PUBLIC_LOYALTY_URL || "https://www.clicksloyalty.com/card/171";
   },
   get mapsUrl() {
     const { lat, lng } = this.location;

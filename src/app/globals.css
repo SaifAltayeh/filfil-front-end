@@ -77,6 +77,44 @@ button {
   font-weight: 500;
 }
 
+html[dir="rtl"] {
+  --font-sans: var(--font-alexandria), "Arial", sans-serif;
+  --font-display: var(--font-alexandria), "Arial", sans-serif;
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-alexandria), "Arial", sans-serif;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+html[dir="rtl"] .font-display,
+html[dir="rtl"] .headline,
+html[dir="rtl"] .font-sans {
+  font-family: var(--font-alexandria), "Arial", sans-serif;
+}
+
+html[dir="rtl"] .font-display,
+html[dir="rtl"] .headline {
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+html[dir="rtl"] .eyebrow {
+  font-family: var(--font-alexandria), "Arial", sans-serif;
+  text-transform: none;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+html[dir="rtl"] button,
+html[dir="rtl"] a.inline-flex {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
 .measure {
   max-width: 38rem;
 }

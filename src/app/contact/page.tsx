@@ -4,6 +4,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageIntro } from "@/components/ui/PageIntro";
+import { getMessages } from "@/i18n/get-messages";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -11,10 +12,20 @@ export const metadata: Metadata = {
   description: "Say hello to filfil in Sweifieh Village, Amman. Questions, ideas, feedback, or just a hello.",
 };
 
-function ContactDetails() {
+function ContactDetails({
+  location,
+  instagram,
+  tiktok,
+  spotify,
+}: {
+  location: string;
+  instagram: string;
+  tiktok: string;
+  spotify: string;
+}) {
   return (
     <div className="max-w-sm">
-      <p className="text-xl leading-snug md:text-2xl">{site.location.display}</p>
+      <p className="text-xl leading-snug md:text-2xl">{location}</p>
       <div className="mt-6 flex flex-col gap-2 text-lg">
         {site.phone ? (
           <a href={`tel:${site.phone.replace(/\s+/g, "")}`} className="nav-link w-fit">
@@ -27,16 +38,16 @@ function ContactDetails() {
           </a>
         ) : null}
         <a href={site.instagram} className="nav-link w-fit" target="_blank" rel="noreferrer">
-          Instagram
+          {instagram}
         </a>
         {site.tiktok ? (
           <a href={site.tiktok} className="nav-link w-fit" target="_blank" rel="noreferrer">
-            TikTok
+            {tiktok}
           </a>
         ) : null}
         {site.spotify ? (
           <a href={site.spotify} className="nav-link w-fit" target="_blank" rel="noreferrer">
-            Spotify
+            {spotify}
           </a>
         ) : null}
       </div>
@@ -44,25 +55,30 @@ function ContactDetails() {
   );
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const t = await getMessages();
+
   return (
     <main>
       <PageIntro
-        title="Say hello."
-        kicker="We'd Love to Hear From You."
-        aside={<ContactDetails />}
+        title={t.contact.title}
+        kicker={t.contact.kicker}
+        aside={
+          <ContactDetails
+            location={t.site.location}
+            instagram={t.common.instagram}
+            tiktok={t.common.tiktok}
+            spotify={t.common.spotify}
+          />
+        }
       >
-        <p>
-          Got a question, an idea, some feedback, or just want to say hello?
-          We&apos;re all ears.
-        </p>
-        <p className="mt-4">
-          Whether you&apos;re a guest, a potential partner, or someone who simply loves
-          good food, we&apos;d love to hear from you.
-        </p>
-        <p className="mt-4">Drop us a message.</p>
+        {t.contact.intro.map((paragraph, index) => (
+          <p key={paragraph} className={index === 0 ? undefined : "mt-4"}>
+            {paragraph}
+          </p>
+        ))}
         <div className="mt-8">
-          <ButtonLink href="#enquire">Get in Touch</ButtonLink>
+          <ButtonLink href="#enquire">{t.contact.getInTouch}</ButtonLink>
         </div>
       </PageIntro>
 
@@ -71,7 +87,7 @@ export default function ContactPage() {
           <div className="grid gap-16 lg:grid-cols-12">
             <div id="enquire" className="scroll-mt-32 lg:col-span-6">
               <Reveal>
-                <h2 className="headline mb-10 text-4xl md:text-5xl">Write to us.</h2>
+                <h2 className="headline mb-10 text-4xl md:text-5xl">{t.contact.write}</h2>
                 <ContactForm />
               </Reveal>
             </div>
@@ -81,11 +97,11 @@ export default function ContactPage() {
                 href={site.mapsUrl}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Open filfil on Google Maps"
+                aria-label={t.contact.map}
                 className="relative block aspect-[4/5] overflow-hidden bg-black/5 lg:h-full lg:min-h-[36rem] lg:aspect-auto"
               >
                 <iframe
-                  title="filfil location map"
+                  title={t.contact.mapTitle}
                   src={site.mapsEmbedUrl}
                   className="pointer-events-none h-full w-full border-0"
                   loading="lazy"
