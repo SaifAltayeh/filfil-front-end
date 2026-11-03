@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { LanguageSwitch } from "@/components/i18n/LanguageSwitch";
 import { Logo } from "@/components/ui/Logo";
 import { SoundToggle } from "@/components/layout/SoundToggle";
 import { MenuOverlay } from "@/components/navigation/MenuOverlay";
@@ -51,7 +50,6 @@ export function Header() {
         <div className="flex h-full items-center justify-between px-5 md:px-10 lg:px-16">
           <Logo variant={overDark ? "light" : "dark"} priority />
           <div className="flex items-center gap-5 md:gap-8">
-            <LanguageSwitch />
             <SoundToggle />
             <button
               type="button"

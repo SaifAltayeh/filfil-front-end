@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { mainNav } from "@/data/navigation";
 import { site } from "@/data/site";
+import { LanguageSwitch } from "@/components/i18n/LanguageSwitch";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 import { getMessages } from "@/i18n/get-messages";
@@ -72,13 +73,16 @@ export async function Footer() {
           </nav>
         </div>
 
-        <div className="flex flex-wrap items-end justify-between gap-6 pt-8 text-sm text-beige/55">
-          <p>
-            © {year} filfil. {t.common.rights}
-          </p>
-          <Link href="/privacy" className="nav-link">
-            {t.common.privacy}
-          </Link>
+        <div className="flex flex-wrap items-center justify-between gap-6 pt-8 text-sm text-beige/55">
+          <LanguageSwitch />
+          <div className="flex flex-wrap items-center gap-6">
+            <p>
+              © {year} filfil. {t.common.rights}
+            </p>
+            <Link href="/privacy" className="nav-link">
+              {t.common.privacy}
+            </Link>
+          </div>
         </div>
       </Container>
     </footer>

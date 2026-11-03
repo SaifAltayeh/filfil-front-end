@@ -13,7 +13,7 @@ export function LanguageSwitch({ className }: { className?: string }) {
 
   const next = locale === "en" ? "ar" : "en";
   const label = locale === "en" ? t.common.switchToArabic : t.common.switchToEnglish;
-  const short = locale === "en" ? t.common.arabic : t.common.english;
+  const name = locale === "en" ? t.common.arabic : t.common.english;
 
   return (
     <button
@@ -27,11 +27,11 @@ export function LanguageSwitch({ className }: { className?: string }) {
       }}
       aria-label={label}
       className={cn(
-        "eyebrow py-2 !text-[15px] leading-none transition-opacity hover:opacity-60 disabled:opacity-50",
+        "inline-flex min-w-[220px] items-center rounded-xl border-2 border-beige px-6 py-3 text-left text-lg text-beige transition-opacity hover:opacity-70 disabled:opacity-50",
         className,
       )}
     >
-      {short}
+      {name}
     </button>
   );
 }
