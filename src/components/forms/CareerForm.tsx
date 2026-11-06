@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { jobs, generalPositionLabel } from "@/data/careers";
+import { jobs, generalPositionLabel, generalPositionLabelAr } from "@/data/careers";
 import { submitCareer } from "@/lib/actions";
 import { careerSchema, type CareerInput } from "@/lib/validation";
 import { Button, buttonClassName } from "@/components/ui/Button";
@@ -19,12 +19,19 @@ export function CareerForm({
   lockedPosition?: boolean;
   positionAsText?: boolean;
 }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const arabic = locale === "ar";
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [cvError, setCvError] = useState<string | null>(null);
   const [cvName, setCvName] = useState<string | null>(null);
-  const positions = [generalPositionLabel, ...jobs.map((job) => job.title)];
+  const positions = [
+    { value: generalPositionLabel, label: arabic ? generalPositionLabelAr : generalPositionLabel },
+    ...jobs.map((job) => ({
+      value: job.title,
+      label: arabic ? job.titleAr : job.title,
+    })),
+  ];
 
   const {
     register,
@@ -75,8 +82,8 @@ export function CareerForm({
         <Field label={t.forms.position} htmlFor="position" error={errors.position?.message}>
           <Select id="position" {...register("position")}>
             {positions.map((position) => (
-              <option key={position} value={position}>
-                {position}
+              <option key={position.value} value={position.value}>
+                {position.label}
               </option>
             ))}
           </Select>

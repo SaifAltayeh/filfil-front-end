@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { LayoutGroup, motion, useReducedMotion } from "motion/react";
 import { menuCategories } from "@/data/menu";
+import { useI18n } from "@/i18n/provider";
 import { cn } from "@/lib/cn";
 
 function categoryFromHash() {
@@ -55,6 +56,8 @@ function categoryFromScroll() {
 }
 
 export function MenuNav() {
+  const { locale, t } = useI18n();
+  const arabic = locale === "ar";
   const reduceMotion = useReducedMotion();
   const [active, setActive] = useState(menuCategories[0]?.id);
   const listRef = useRef<HTMLUListElement>(null);
@@ -106,7 +109,7 @@ export function MenuNav() {
 
   return (
     <nav
-      aria-label="Menu categories"
+      aria-label={t.nav["/menu"]}
       className="sticky top-16 z-40 -mx-5 mb-6 border-y border-black/10 bg-beige md:top-20 md:-mx-10 md:mb-8 lg:-mx-16"
     >
       <LayoutGroup id="menu-categories">
@@ -137,7 +140,7 @@ export function MenuNav() {
                     isActive ? "text-black" : "text-black/45 hover:text-black",
                   )}
                 >
-                  {category.name}
+                  {arabic ? category.nameAr : category.name}
                   {isActive ? (
                     reduceMotion ? (
                       <span className="absolute inset-x-0 bottom-0 h-px bg-black" />

@@ -277,6 +277,7 @@ export const en = {
     responsibilities: "Responsibilities",
     requirements: "Requirements",
     apply: "Apply",
+    applyRole: "Apply for this role",
   },
   privacy: {
     title: "Privacy.",
