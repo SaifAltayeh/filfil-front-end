@@ -29,7 +29,11 @@ export function LanguageSwitch({ className }: { className?: string }) {
         });
       }}
       aria-label={label}
-      className={cn(buttonClassName({ variant: "outline", tone: "light" }), className)}
+      className={cn(
+        buttonClassName({ variant: "outline", tone: "light" }),
+        "!px-7 !py-3.5 !text-[0.88rem] !tracking-[0.1em] sm:!px-8 sm:!py-4 sm:!text-[0.95rem] sm:!tracking-[0.14em]",
+        className,
+      )}
     >
       {name}
     </button>
