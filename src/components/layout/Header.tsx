@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/ui/Logo";
+import { LanguageSwitch } from "@/components/i18n/LanguageSwitch";
 import { SoundToggle } from "@/components/layout/SoundToggle";
 import { MenuOverlay } from "@/components/navigation/MenuOverlay";
 import { useI18n } from "@/i18n/provider";
@@ -49,7 +50,8 @@ export function Header() {
       >
         <div className="flex h-full items-center justify-between px-5 md:px-10 lg:px-16">
           <Logo variant={overDark ? "light" : "dark"} priority />
-          <div className="flex items-center gap-5 md:gap-8">
+          <div className="flex items-center gap-3 md:gap-6">
+            <LanguageSwitch size="nav" tone={overDark ? "light" : "dark"} />
             <SoundToggle />
             <button
               type="button"

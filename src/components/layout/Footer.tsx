@@ -28,6 +28,11 @@ export async function Footer() {
             <p className="eyebrow mb-5 text-beige/50">{t.common.visit}</p>
             <p className="text-lg leading-snug">{t.site.location}</p>
             <div className="mt-6 flex flex-col gap-2">
+              {site.email ? (
+                <a href={`mailto:${site.email}`} className="nav-link inline-block w-fit">
+                  {site.email}
+                </a>
+              ) : null}
               <a
                 href={site.instagram}
                 className="nav-link inline-block w-fit"

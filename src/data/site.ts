@@ -23,7 +23,7 @@ export const site = {
     return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   },
   get email() {
-    return process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@filfiljo.com";
+    return process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@filfileats.com";
   },
   get phone() {
     return process.env.NEXT_PUBLIC_CONTACT_PHONE || "+962 7 9763 6510";
