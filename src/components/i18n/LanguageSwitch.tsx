@@ -64,8 +64,8 @@ export function LanguageSwitch({
         onClick={() => setOpen((value) => !value)}
         className="flex items-center gap-1.5 py-2 text-current"
       >
-        <span aria-hidden className="text-[1.2rem] leading-none font-medium">
-          A
+        <span aria-hidden className="text-[0.85rem] leading-none font-medium tracking-[0.14em]">
+          {localeMeta(locale).short}
         </span>
         <svg
           viewBox="0 0 12 8"
@@ -89,28 +89,28 @@ export function LanguageSwitch({
           role="listbox"
           aria-label={`${t.common.english} / ${t.common.arabic}`}
           className={cn(
-            "absolute z-[90] min-w-[10.5rem] bg-beige py-3 text-black shadow-[0_16px_40px_rgba(0,0,0,0.16)] ring-1 ring-black/10",
+            "absolute z-[90] min-w-[5.5rem] bg-beige py-2 text-black shadow-[0_16px_40px_rgba(0,0,0,0.16)] ring-1 ring-black/10",
             placement === "up" ? "bottom-full mb-3" : "top-full mt-3",
             align === "start" ? "start-0" : "end-0",
           )}
         >
           {locales.map((code) => {
             const active = code === locale;
-            const name = localeMeta(code).name;
+            const meta = localeMeta(code);
             return (
               <li key={code} role="none">
                 <button
                   type="button"
                   role="option"
                   aria-selected={active}
-                  dir={localeMeta(code).dir}
+                  aria-label={meta.name}
                   onClick={() => choose(code)}
                   className={cn(
-                    "block w-full px-5 py-2.5 text-start text-[1.05rem] leading-none",
+                    "block w-full px-5 py-2 text-start text-[0.95rem] leading-none tracking-[0.12em]",
                     active ? "text-black" : "text-black/40",
                   )}
                 >
-                  {name}
+                  {meta.short}
                 </button>
               </li>
             );

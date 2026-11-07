@@ -11,6 +11,6 @@ export function isLocale(value: string | undefined): value is Locale {
 
 export function localeMeta(locale: Locale) {
   return locale === "ar"
-    ? { code: "ar", dir: "rtl" as const, name: "العربية" }
-    : { code: "en", dir: "ltr" as const, name: "English" };
+    ? { code: "ar", dir: "rtl" as const, name: "العربية", short: "AR" }
+    : { code: "en", dir: "ltr" as const, name: "English", short: "EN" };
 }
