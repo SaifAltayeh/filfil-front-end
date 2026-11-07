@@ -1,4 +1,4 @@
-import { Brand } from "@/components/ui/Brand";
+import { BrandCta } from "@/components/ui/Brand";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { getMessages } from "@/i18n/get-messages";
@@ -20,7 +20,7 @@ export default async function NotFound() {
         <p className="mt-6 max-w-md text-lg">{t.notFound.body}</p>
         <div className="mt-10">
           <ButtonLink href="/">
-            {t.notFound.back} <Brand />
+            <BrandCta label={t.notFound.back} />
           </ButtonLink>
         </div>
       </Container>

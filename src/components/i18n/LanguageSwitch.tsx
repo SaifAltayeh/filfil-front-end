@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+import { buttonClassName } from "@/components/ui/Button";
 import { setLocale } from "@/i18n/set-locale";
 import { useI18n } from "@/i18n/provider";
 import { cn } from "@/lib/cn";
@@ -22,14 +23,13 @@ export function LanguageSwitch({ className }: { className?: string }) {
       onClick={() => {
         startTransition(async () => {
           await setLocale(next);
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
           router.refresh();
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
         });
       }}
       aria-label={label}
-      className={cn(
-        "inline-flex min-w-[220px] items-center rounded-xl border-2 border-beige px-6 py-3 text-left text-lg text-beige transition-opacity hover:opacity-70 disabled:opacity-50",
-        className,
-      )}
+      className={cn(buttonClassName({ variant: "outline", tone: "light" }), className)}
     >
       {name}
     </button>

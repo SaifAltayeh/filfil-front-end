@@ -9,7 +9,7 @@ import {
   useTransform,
   type MotionValue,
 } from "motion/react";
-import { Brand } from "@/components/ui/Brand";
+import { BrandCta } from "@/components/ui/Brand";
 import { ButtonLink } from "@/components/ui/Button";
 import { useI18n } from "@/i18n/provider";
 import { media } from "@/lib/assets";
@@ -85,7 +85,7 @@ export function Philosophy() {
               ))}
             </div>
             <ButtonLink href="/about" variant="outline" tone="light" className="self-start md:self-auto">
-              {t.home.aboutCta} <Brand />
+              <BrandCta label={t.home.aboutCta} />
             </ButtonLink>
           </div>
         </div>
@@ -144,7 +144,7 @@ export function Philosophy() {
                 ))}
               </div>
               <ButtonLink href="/about" variant="outline" tone="light" className="self-start md:self-auto">
-                {t.home.aboutCta} <Brand />
+                <BrandCta label={t.home.aboutCta} />
               </ButtonLink>
             </div>
           </motion.div>

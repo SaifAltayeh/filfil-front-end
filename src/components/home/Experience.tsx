@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Brand } from "@/components/ui/Brand";
+import { BrandCta } from "@/components/ui/Brand";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ImageReveal, Reveal } from "@/components/ui/Reveal";
@@ -30,7 +30,7 @@ export async function Experience() {
           <Reveal delay={0.12} className="flex h-full flex-col justify-between gap-8 lg:col-span-4">
             <p className="text-lg leading-relaxed text-beige/75">{t.home.experienceBody}</p>
             <ButtonLink href="/about" tone="light" className="self-start">
-              {t.home.discover} <Brand />
+              <BrandCta label={t.home.discover} />
             </ButtonLink>
           </Reveal>
         </div>

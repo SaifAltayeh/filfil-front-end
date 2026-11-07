@@ -60,31 +60,49 @@ export function PhilosophyCarousel() {
   };
 
   return (
-    <div
-      ref={scrollerRef}
-      className="-mx-5 flex snap-x snap-mandatory gap-10 overflow-x-auto overscroll-x-contain pt-16 pb-4 ps-5 scroll-ps-5 [scrollbar-width:none] md:-mx-10 md:gap-14 md:ps-10 md:scroll-ps-10 lg:-mx-16 lg:ps-16 lg:scroll-ps-16 [&::-webkit-scrollbar]:hidden"
-    >
-      {pillars.map((pillar, index) => (
-        <article
-          key={pillar.title}
-          data-slide
-          onClick={() => goTo(index)}
-          className={cn(
-            "w-[min(86vw,28rem)] shrink-0 snap-start overflow-hidden border-t border-black/10 pt-8 transition-opacity duration-300",
-            index === active ? "opacity-100" : "opacity-30",
-          )}
-        >
-          <p className="eyebrow mb-4">{String(index + 1).padStart(2, "0")}</p>
-          <h3 className="font-display text-[clamp(1.5rem,2.2vw,2rem)] leading-snug tracking-[-0.03em]">
-            {arabic ? pillar.title : `${pillar.title}.`}
-          </h3>
-          <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-black/70">
-            {pillar.body.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-        </article>
-      ))}
+    <div>
+      <div
+        ref={scrollerRef}
+        className="-mx-5 flex cursor-grab snap-x snap-mandatory gap-10 overflow-x-auto overscroll-x-contain pt-16 pb-4 ps-5 scroll-ps-5 [scrollbar-width:none] md:-mx-10 md:gap-14 md:ps-10 md:scroll-ps-10 lg:-mx-16 lg:ps-16 lg:scroll-ps-16 md:cursor-auto [&::-webkit-scrollbar]:hidden"
+      >
+        {pillars.map((pillar, index) => (
+          <article
+            key={pillar.title}
+            data-slide
+            onClick={() => goTo(index)}
+            className={cn(
+              "w-[min(86vw,28rem)] shrink-0 snap-start overflow-hidden border-t border-black/10 pt-8 transition-opacity duration-300",
+              index === active ? "opacity-100" : "opacity-30",
+            )}
+          >
+            <p className="eyebrow mb-4">{String(index + 1).padStart(2, "0")}</p>
+            <h3 className="font-display text-[clamp(1.5rem,2.2vw,2rem)] leading-snug tracking-[-0.03em]">
+              {arabic ? pillar.title : `${pillar.title}.`}
+            </h3>
+            <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-black/70">
+              {pillar.body.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+      <div className="mt-6 flex items-center justify-center gap-2 md:hidden" role="tablist" aria-label={arabic ? "الشرائح" : "Slides"}>
+        {pillars.map((pillar, index) => (
+          <button
+            key={pillar.title}
+            type="button"
+            role="tab"
+            aria-selected={index === active}
+            aria-label={`${index + 1}`}
+            onClick={() => goTo(index)}
+            className={cn(
+              "h-2 rounded-full transition-[width,background-color] duration-300",
+              index === active ? "w-6 bg-black" : "w-2 bg-black/25",
+            )}
+          />
+        ))}
+      </div>
     </div>
   );
 }
