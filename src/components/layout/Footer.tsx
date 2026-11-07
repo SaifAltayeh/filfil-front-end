@@ -79,7 +79,7 @@ export async function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-6 pt-8 text-sm text-beige/55">
-          <LanguageSwitch />
+          <LanguageSwitch placement="up" align="start" className="text-beige" />
           <div className="flex flex-wrap items-center gap-6">
             <p>
               © {year} filfil. {t.common.rights}

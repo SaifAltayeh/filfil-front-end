@@ -51,7 +51,7 @@ export function Header() {
         <div className="flex h-full items-center justify-between px-5 md:px-10 lg:px-16">
           <Logo variant={overDark ? "light" : "dark"} priority />
           <div className="flex items-center gap-3 md:gap-6">
-            <LanguageSwitch size="nav" tone={overDark ? "light" : "dark"} />
+            <LanguageSwitch placement="down" align="end" />
             <SoundToggle />
             <button
               type="button"
